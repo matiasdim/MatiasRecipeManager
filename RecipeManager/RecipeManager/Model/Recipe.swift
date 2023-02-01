@@ -8,5 +8,7 @@
 import Foundation
 
 struct Recipe: Decodable {
-    
+    let id: Float
+    let title: String
+    let image: String
 }

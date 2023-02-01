@@ -11,16 +11,20 @@ class RecipesViewModel {
     private let recipes: [Recipe]
     
     private(set) var viewTitle = "Recipes"
+        
+    var numbersOfSections: Int {
+        return 1
+    }
     
     init(recipes: [Recipe]) {
         self.recipes = recipes
     }
     
-    var numbersOfSections: Int {
-        return 0
-    }
-    
     func numbersOfRows(in section: Int = 0) -> Int {
         return recipes.count
+    }
+    
+    func cellTitle(at index: Int) -> String {
+        return recipes[index].title
     }
 }
