@@ -11,4 +11,10 @@ struct Recipe: Decodable {
     let id: Float
     let title: String
     let image: String
+    
+    let time: Int
+    let servings: Int
+    let sourceURL: String
+    let summary: String
+    let instructions: String
 }

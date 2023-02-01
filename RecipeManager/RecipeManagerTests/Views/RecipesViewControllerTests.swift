@@ -45,8 +45,7 @@ final class RecipesViewControllerTests: XCTestCase {
     }
     
     func test_tableViewWith2Elements_numberOfRowsInSection0_shouldBe2() {
-        let viewModel = RecipesViewModel(recipes: [Recipe(id: 1, title: "Test Title", image: ""),
-                                                          Recipe(id: 2, title: "Test Title 2", image: "")])
+        let viewModel = RecipesViewModel(recipes: [recipe1, recipe2])
         let sut = RecipesViewController(viewModel: viewModel, selection: { _ in })
         
         sut.loadViewIfNeeded()
@@ -55,7 +54,7 @@ final class RecipesViewControllerTests: XCTestCase {
     }
     
     func test_tablewViewCellForRow0_shouldBeRecipeCellCell() {
-        let sut = makeSUT(withRecipes: [Recipe(id: 1, title: "Test Title", image: "")])
+        let sut = makeSUT(withRecipes: [recipe1])
 
         let cell = cellForRow(in: sut.tableView, indexPath: IndexPath(row: 0, section: 0)) as? RecipeCell
 
@@ -63,7 +62,7 @@ final class RecipesViewControllerTests: XCTestCase {
     }
     
     func test_tablewViewCellForRow0_shouldHaveCorrectAttributeValuesConfigured() {
-        let sut = makeSUT(withRecipes: [Recipe(id: 1, title: "Test Title", image: "")])
+        let sut = makeSUT(withRecipes: [recipe1])
         
         let cell = cellForRow(in: sut.tableView, indexPath: IndexPath(row: 0, section: 0)) as? RecipeCell
         
@@ -79,12 +78,16 @@ final class RecipesViewControllerTests: XCTestCase {
     }
     
     // MARK: - Private helpers
+    private let recipe1 = Recipe(id: 1, title: "Test Title", image: "", time: 192, servings: 5, sourceURL: "", summary: "This is the summary of the recipe", instructions: "The instructions of the recipe comes here")
+    
+    private let recipe2 = Recipe(id: 2, title: "Test Title 2", image: "", time: 192, servings: 5, sourceURL: "", summary: "This is the summary of the recipe", instructions: "The instructions of the recipe comes here")
+    
     private func selectedRecipeID(atRow row: Int) -> Float {
         var selectedRecipeID: Float = 0
         let selectionCallback = { index in
             selectedRecipeID = index
         }
-        let sut = makeSUT(withRecipes: [Recipe(id: 1, title: "", image: "")], selection: selectionCallback)
+        let sut = makeSUT(withRecipes: [recipe1], selection: selectionCallback)
         sut.loadViewIfNeeded()
         
         didSelectRowAt(in: sut.tableView, indexPath: IndexPath(row: row, section: 0))
