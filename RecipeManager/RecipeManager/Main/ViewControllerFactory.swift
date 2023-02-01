@@ -10,7 +10,7 @@ import UIKit
 
 protocol ViewsFactory {
     func makeRecipesViewController() -> UIViewController
-    func makeRecipeDetailViewController() -> UIViewController
+    func makeRecipeDetailViewController(forID id: Float) -> UIViewController
 }
 
 struct ViewControllerFactory: ViewsFactory {
@@ -21,8 +21,8 @@ struct ViewControllerFactory: ViewsFactory {
         return RecipesViewController(viewModel: viewModel, selection: selection)
     }
     
-    func makeRecipeDetailViewController() -> UIViewController {
-        return RecipeDetailViewController()
+    func makeRecipeDetailViewController(forID id: Float) -> UIViewController {        
+        return RecipeDetailViewController(recipeID: id)
     }
     
 }

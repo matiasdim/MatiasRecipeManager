@@ -27,6 +27,8 @@
 		130B82742989ED59005676DC /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130B82722989ED59005676DC /* RecipeCell.swift */; };
 		130B82752989ED59005676DC /* RecipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 130B82732989ED59005676DC /* RecipeCell.xib */; };
 		130B82772989EE0E005676DC /* RecipeCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130B82762989EE0E005676DC /* RecipeCellTests.swift */; };
+		130B8279298A07A5005676DC /* NavigationControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130B8278298A07A5005676DC /* NavigationControllerRouter.swift */; };
+		130B827B298A0810005676DC /* NavigationControllerRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130B827A298A0810005676DC /* NavigationControllerRouterTests.swift */; };
 		17C16716E9BE3B1BB19AA5CC /* Pods_RecipeManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203E75697109A09740894B77 /* Pods_RecipeManager.framework */; };
 		8F2E2AF2A214DB16244CC346 /* Pods_RecipeManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16CDF7A14935606B17A9FDC /* Pods_RecipeManagerTests.framework */; };
 /* End PBXBuildFile section */
@@ -67,6 +69,8 @@
 		130B82722989ED59005676DC /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		130B82732989ED59005676DC /* RecipeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeCell.xib; sourceTree = "<group>"; };
 		130B82762989EE0E005676DC /* RecipeCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCellTests.swift; sourceTree = "<group>"; };
+		130B8278298A07A5005676DC /* NavigationControllerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouter.swift; sourceTree = "<group>"; };
+		130B827A298A0810005676DC /* NavigationControllerRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouterTests.swift; sourceTree = "<group>"; };
 		203E75697109A09740894B77 /* Pods_RecipeManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecipeManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED75A4A40777969033C58A2 /* Pods-RecipeManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeManager.release.xcconfig"; path = "Target Support Files/Pods-RecipeManager/Pods-RecipeManager.release.xcconfig"; sourceTree = "<group>"; };
 		71B81959457F9876EA0080B5 /* Pods-RecipeManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-RecipeManagerTests/Pods-RecipeManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 		130B821E298980D9005676DC /* RecipeManager */ = {
 			isa = PBXGroup;
 			children = (
+				130B8278298A07A5005676DC /* NavigationControllerRouter.swift */,
 				130B82532989825C005676DC /* Main */,
 				130B825229898223005676DC /* ViewModels */,
 				130B825129898216005676DC /* Views */,
@@ -140,6 +145,7 @@
 				130B82612989995F005676DC /* Views */,
 				130B82542989857D005676DC /* Main */,
 				130B82702989CBDB005676DC /* TestHelpers.swift */,
+				130B827A298A0810005676DC /* NavigationControllerRouterTests.swift */,
 			);
 			path = RecipeManagerTests;
 			sourceTree = "<group>";
@@ -423,6 +429,7 @@
 				130B82742989ED59005676DC /* RecipeCell.swift in Sources */,
 				130B826029899877005676DC /* ViewControllerFactory.swift in Sources */,
 				130B825D29898B87005676DC /* RecipeDetailViewController.swift in Sources */,
+				130B8279298A07A5005676DC /* NavigationControllerRouter.swift in Sources */,
 				130B8265298999F6005676DC /* RecipesViewModel.swift in Sources */,
 				130B8222298980D9005676DC /* SceneDelegate.swift in Sources */,
 				130B826A2989B6E4005676DC /* Recipe.swift in Sources */,
@@ -438,6 +445,7 @@
 				130B8256298986E0005676DC /* ViewControllerFactoryTests.swift in Sources */,
 				130B82682989B111005676DC /* RecipesViewModelTests.swift in Sources */,
 				130B826D2989B705005676DC /* RecipeTests.swift in Sources */,
+				130B827B298A0810005676DC /* NavigationControllerRouterTests.swift in Sources */,
 				130B82772989EE0E005676DC /* RecipeCellTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,7 @@ class RecipeCell: UITableViewCell {
     @IBOutlet private(set) weak var titleLabel: UILabel!
     @IBOutlet private(set) weak var recipeImageView: UIImageView!
 
-    func configure(title: String, image: UIImage = .remove) {
+    func configure(title: String?, image: UIImage = .remove) {
         titleLabel.text = title
         recipeImageView.image = image
     }

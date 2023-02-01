@@ -22,3 +22,7 @@ func cellForRow(in table: UITableView, indexPath: IndexPath) -> UITableViewCell?
 func didSelectRowAt(in table: UITableView, indexPath: IndexPath) {
     table.delegate?.tableView?(table, didSelectRowAt: indexPath)
 }
+
+func exectureRunLoop() {
+    RunLoop.current.run(until: Date())
+}

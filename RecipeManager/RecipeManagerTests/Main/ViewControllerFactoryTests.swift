@@ -48,7 +48,7 @@ final class ViewControllerFactoryTests: XCTestCase {
     }
     
     func test_makeRecipeDetailViewController_shouldReturnRecipeDetailViewController() {
-        XCTAssertNotNil(sut.makeRecipeDetailViewController() as? RecipeDetailViewController)
+        XCTAssertNotNil(sut.makeRecipeDetailViewController(forID: 0) as? RecipeDetailViewController)
     }
 
 }

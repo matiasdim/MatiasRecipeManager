@@ -24,7 +24,11 @@ class RecipesViewModel {
         return recipes.count
     }
     
-    func cellTitle(at index: Int) -> String {
-        return recipes[index].title
+    func cellTitle(at index: Int) -> String? {
+        return recipes.indices.contains(index) ? recipes[index].title : nil
+    }
+    
+    func recipeID(at index: Int) -> Float? {
+        return recipes.indices.contains(index) ? recipes[index].id : nil
     }
 }

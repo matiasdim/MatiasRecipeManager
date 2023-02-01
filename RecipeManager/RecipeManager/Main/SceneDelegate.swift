@@ -10,15 +10,19 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private lazy var navigationController = UINavigationController()
     private lazy var factory = ViewControllerFactory()
+    private lazy var router = NavigationControllerRouter(navController: navigationController, factory: factory)
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: factory.makeRecipesViewController())
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
+        startApp()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -49,6 +53,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    // MARK: - private
+    func startApp() {
+        router.presentRecipesViewController()
+    }
 
 }
 
