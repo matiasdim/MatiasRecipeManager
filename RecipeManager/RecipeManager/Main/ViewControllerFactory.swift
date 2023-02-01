@@ -21,7 +21,7 @@ struct ViewControllerFactory: ViewsFactory {
     }
     
     func makeRecipeDetailViewController(forID id: Float) -> UIViewController {        
-        return RecipeDetailViewController(recipeID: id)
+        return RecipeDetailViewController(viewModel: RecipeDetailViewModel())
     }
     
 }

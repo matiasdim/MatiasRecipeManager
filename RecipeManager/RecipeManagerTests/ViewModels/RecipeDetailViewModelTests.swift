@@ -9,52 +9,77 @@ import XCTest
 @testable import RecipeManager
 
 final class RecipeDetailViewModelTests: XCTestCase {
-    var sut: RecipeDetailViewModel!
-    
-    override func setUp() {
-        super.setUp()
-        sut = RecipeDetailViewModel(recipe: recipe)
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-        sut = nil
-    }
     
     func test_viewController_shouldInitWithARecipe() {
-        XCTAssertEqual(sut.recipe.title, "Title")
+        XCTAssertEqual(makeSUT(recipe: recipe).viewTitle, "Title")
+    }
+    
+    func test_viewModel_withNoRecipe_shouldInitNoRecipe() {
+        XCTAssertEqual(makeSUT().recipeTitle, "", "Expected empty property value but got different value")
     }
 
-    func test_viewModel_shouldHaveRecipeTitleAsTitlePropertyValue() {
-        XCTAssertEqual(sut.viewTitle, "Title", "Wrong ViewTitle value")
+    func test_viewModel_shouldReturnViewTitle() {
+        XCTAssertEqual(makeSUT(recipe: recipe).viewTitle, "Title", "Wrong ViewTitle value")
+    }
+    
+    func test_viewModel_withNoRecipe_shouldHaveEmptyViewTitle() {
+        XCTAssertEqual(makeSUT().viewTitle, "", "Expected empty property value but got different value")
     }
     
     func test_recipeTitle_shouldReturnRecipeTitle() {
-        XCTAssertEqual(sut.recipeTitle, "Title", "Wrong recipeTitle value")
+        XCTAssertEqual(makeSUT(recipe: recipe).recipeTitle, "Title", "Wrong recipeTitle value")
     }
     
-    func test_cookingTime_shouldReturnRecipeTitle() {
-        XCTAssertEqual(sut.cookingTime, 192, "Wrong cookingTime value")
+    func test_viewModel_withNoRecipe_shouldHaveEmptyRecipeTitle() {
+        XCTAssertEqual(makeSUT().recipeTitle, "", "Expected empty property value but got different value")
     }
     
-    func test_numberOfServings_shouldReturnRecipeTitle() {
-        XCTAssertEqual(sut.numberOfServings, 5, "Wrong numberOfServings value")
+    func test_cookingTime_shouldReturnCookingTime() {
+        XCTAssertEqual(makeSUT(recipe: recipe).cookingTime, 192, "Wrong cookingTime value")
     }
     
-    func test_sourceURL_shouldReturnRecipeTitle() {
-        XCTAssertEqual(sut.sourceURL, "", "Wrong sourceURL value")
+    func test_viewModel_withNoRecipe_shouldHaveCookingTimeValueOf0() {
+        XCTAssertEqual(makeSUT().cookingTime, 0, "Expected property value of 0 but got different value")
     }
     
-    func test_summary_shouldReturnRecipeTitle() {
-        XCTAssertEqual(sut.summary, "This is the summary of the recipe", "Wrong summary value")
+    func test_numberOfServings_shouldReturnNumberOfServings() {
+        XCTAssertEqual(makeSUT(recipe: recipe).numberOfServings, 5, "Wrong numberOfServings value")
     }
     
-    func test_instructions_shouldReturnRecipeTitle() {
-        XCTAssertEqual(sut.instructions,
+    func test_viewModel_withNoRecipe_shouldHaveNumberOfServingsValueOf0() {
+        XCTAssertEqual(makeSUT().numberOfServings, 0, "Expected property value of 0 but got different value")
+    }
+    
+    func test_sourceURL_shouldReturnSourceURL() {
+        XCTAssertEqual(makeSUT(recipe: recipe).sourceURL, "", "Wrong sourceURL value")
+    }
+    
+    func test_viewModel_withNoRecipe_shouldHaveEmptySourceURL() {
+        XCTAssertEqual(makeSUT().sourceURL, "", "Expected empty property value but got different value")
+    }
+    
+    func test_summary_shouldReturnRecipeSummary() {
+        XCTAssertEqual(makeSUT(recipe: recipe).summary, "This is the summary of the recipe", "Wrong summary value")
+    }
+    
+    func test_viewModel_withNoRecipe_shouldHaveEmptySummary() {
+        XCTAssertEqual(makeSUT().summary, "", "Expected empty property value but got different value")
+    }
+    
+    func test_instructions_shouldReturnInstructions() {
+        XCTAssertEqual(makeSUT(recipe: recipe).instructions,
                        "The instructions of the recipe comes here, The instructions of the recipe comes here The instructions of the recipe comes here The instructions of the recipe comes here, The instructions of the recipe comes here. The instructions of the recipe comes here The instructions of the recipe comes here The instructions of the recipe comes here, The instructions of the recipe comes here.",
                        "Wrong summary value")
     }
     
+    func test_viewModel_withNoRecipe_shouldHaveEmptyInstructions() {
+        XCTAssertEqual(makeSUT().instructions, "", "Expected empty property value but got different value")
+    }
+    
     // MARK: - private
     let recipe = Recipe(id: 1, title: "Title", image: "", time: 192, servings: 5, sourceURL: "", summary: "This is the summary of the recipe", instructions: "The instructions of the recipe comes here, The instructions of the recipe comes here The instructions of the recipe comes here The instructions of the recipe comes here, The instructions of the recipe comes here. The instructions of the recipe comes here The instructions of the recipe comes here The instructions of the recipe comes here, The instructions of the recipe comes here.")
+    
+    private func makeSUT(recipe: Recipe? = nil) -> RecipeDetailViewModel {
+        return RecipeDetailViewModel(recipe: recipe)
+    }
 }

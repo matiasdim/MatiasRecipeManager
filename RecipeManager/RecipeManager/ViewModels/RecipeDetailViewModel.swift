@@ -8,37 +8,37 @@
 import Foundation
 
 class RecipeDetailViewModel {
-    let recipe: Recipe
-    
-    init(recipe: Recipe) {
+    private let recipe: Recipe?
+        
+    init(recipe: Recipe? = nil) {
         self.recipe = recipe
     }
     
     var viewTitle: String {
-        self.recipe.title
+        recipe?.title ?? ""
     }
     
     var recipeTitle: String {
-        self.recipe.title
+        recipe?.title ?? ""
     }
     
     var cookingTime: Int {
-        self.recipe.time
+        recipe?.time ?? 0
     }
     
     var numberOfServings: Int {
-        self.recipe.servings
+        recipe?.servings ?? 0
     }
     
     var sourceURL: String {
-        self.recipe.sourceURL
+        recipe?.sourceURL ?? ""
     }
     
     var summary: String {
-        self.recipe.summary
+        recipe?.summary ?? ""
     }
     
     var instructions: String {
-        self.recipe.instructions
+        recipe?.instructions ?? ""
     }
 }

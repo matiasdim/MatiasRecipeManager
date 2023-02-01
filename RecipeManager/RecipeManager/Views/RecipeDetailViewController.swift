@@ -17,11 +17,10 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var sourceURLLabel: UILabel!
     @IBOutlet weak var InstructionsLabel: UILabel!
     
+    private(set) var viewModel: RecipeDetailViewModel
     
-    let recipeID: Float
-    
-    init(recipeID: Float) {
-        self.recipeID = recipeID
+    init(viewModel: RecipeDetailViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
