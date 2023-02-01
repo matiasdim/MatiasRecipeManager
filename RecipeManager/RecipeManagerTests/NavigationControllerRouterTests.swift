@@ -39,7 +39,7 @@ final class NavigationControllerRouterTests: XCTestCase {
         
         XCTAssertEqual(sut.navController.viewControllers.count, 1)
         
-        sut.selectionCallback?(1)
+        sut.recipeSelectionAction(1)
         exectureRunLoop()
         
         XCTAssertEqual(sut.navController.viewControllers.count, 2, "selectionCallback was not called since no Vc ws pushed into the stack")
@@ -61,17 +61,6 @@ final class NavigationControllerRouterTests: XCTestCase {
         XCTAssertTrue(navigation.lastVCPushedAnimated)
     }
     
-    private class ViewControllerFactoryStub: ViewsFactory {
-        func makeRecipesViewController() -> UIViewController {
-            return RecipesViewController(viewModel: RecipesViewModel(recipes: []),
-                                         selection: { _ in })
-        }
-        
-        func makeRecipeDetailViewController(forID id: Float) -> UIViewController {
-            return UIViewController()
-        }
-                
-    }
 }
 
 

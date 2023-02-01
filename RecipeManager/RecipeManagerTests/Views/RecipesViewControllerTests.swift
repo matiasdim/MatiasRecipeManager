@@ -36,7 +36,7 @@ final class RecipesViewControllerTests: XCTestCase {
     }
     
     func test_tableViewWithoutData_numberOfRowsInSection0_shouldBe0() {
-        let viewModel = TestableRecipesViewModel(recipes: [])
+        let viewModel = RecipesViewModel()
         let sut = RecipesViewController(viewModel: viewModel, selection: { _ in })
         
         sut.loadViewIfNeeded()
@@ -45,7 +45,7 @@ final class RecipesViewControllerTests: XCTestCase {
     }
     
     func test_tableViewWith2Elements_numberOfRowsInSection0_shouldBe2() {
-        let viewModel = TestableRecipesViewModel(recipes: [Recipe(id: 1, title: "Test Title", image: ""),
+        let viewModel = RecipesViewModel(recipes: [Recipe(id: 1, title: "Test Title", image: ""),
                                                           Recipe(id: 2, title: "Test Title 2", image: "")])
         let sut = RecipesViewController(viewModel: viewModel, selection: { _ in })
         
@@ -70,34 +70,42 @@ final class RecipesViewControllerTests: XCTestCase {
         XCTAssertEqual(cell?.titleLabel.text, "Test Title")
     }
     
-    func test_didSelectRowAtRow0_shouldCallSelectedCallback() {
-        var selectedIndex = -1
-        let viewModel = RecipesViewModel(recipes: [Recipe(id: 1, title: "", image: "")])
-        let sut = RecipesViewController(viewModel: viewModel, selection: { index in
-            selectedIndex = index
-        })
-        sut.loadViewIfNeeded()
-        
-        didSelectRowAt(in: sut.tableView, indexPath: IndexPath(row: 0, section: 0))
-        
-        XCTAssertEqual(selectedIndex, 0, "didSelectAt action failed")
+    func test_didSelectRowAtRow0_shouldCallSelectionCallback() {
+        XCTAssertEqual(selectedRecipeID(atRow: 0), 1, "didSelectAt action failed")
+    }
+    
+    func test_didSelectRowAtRow_withNonExistingIndex_shouldDoNothing() {
+        XCTAssertEqual(selectedRecipeID(atRow: 1), 0, "didSelectAt called and it was not expected")
     }
     
     // MARK: - Private helpers
-    private func makeSUT(withRecipes recipes: [Recipe] = []) -> RecipesViewController {
+    private func selectedRecipeID(atRow row: Int) -> Float {
+        var selectedRecipeID: Float = 0
+        let selectionCallback = { index in
+            selectedRecipeID = index
+        }
+        let sut = makeSUT(withRecipes: [Recipe(id: 1, title: "", image: "")], selection: selectionCallback)
+        sut.loadViewIfNeeded()
+        
+        didSelectRowAt(in: sut.tableView, indexPath: IndexPath(row: row, section: 0))
+        
+        return selectedRecipeID
+    }
+    
+    private func makeSUT(withRecipes recipes: [Recipe] = [], selection : @escaping ((Float) -> ()) = { _ in }) -> RecipesViewController {
         let viewModel = RecipesViewModel(recipes: recipes)
-        let sut = RecipesViewController(viewModel: viewModel, selection: { _ in })
+        let sut = RecipesViewController(viewModel: viewModel, selection: selection)
         sut.loadViewIfNeeded()
         return sut
     }
                           
-    private class TestableRecipesViewModel: RecipesViewModel {
-        var testArrayOfRecipes: [Recipe]
-        
-        override init(recipes: [Recipe]) {
-            testArrayOfRecipes = recipes
-            super.init(recipes: recipes)
-        }
-    }
+//    private class TestableRecipesViewModel: RecipesViewModel {
+//        var testArrayOfRecipes: [Recipe]
+//
+//        override init(recipes: [Recipe]) {
+//            testArrayOfRecipes = recipes
+//            super.init(recipes: recipes)
+//        }
+//    }
 
 }

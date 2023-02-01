@@ -12,9 +12,9 @@ class RecipesViewController: UIViewController {
     @IBOutlet private(set) weak var tableView: UITableView!
     
     private(set) var viewModel: RecipesViewModel
-    private(set) var selection: (Int) -> Void
+    private(set) var selection: (Float) -> Void
     
-    init(viewModel: RecipesViewModel, selection: @escaping (Int) -> ()) {
+    init(viewModel: RecipesViewModel, selection: @escaping (Float) -> ()) {
         self.viewModel = viewModel
         self.selection = selection
         super.init(nibName: nil, bundle: nil)
@@ -68,7 +68,11 @@ extension RecipesViewController: UITableViewDataSource {
 
 extension RecipesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selection(indexPath.row)
+        guard let recipeID = viewModel.recipeID(at: indexPath.row) else {
+            return
+        }
+        
+        selection(recipeID)
     }
 }
     

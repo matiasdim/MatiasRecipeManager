@@ -26,11 +26,11 @@ final class ViewControllerFactoryTests: XCTestCase {
     }
     
     func test_makeRecipesViewController_shouldReturnRecipesViewController() {
-        XCTAssertNotNil(sut.makeRecipesViewController() as? RecipesViewController)
+        XCTAssertNotNil(sut.makeRecipesViewController(withSelectionAction: { _ in }) as? RecipesViewController)
     }
     
     func test_makeRecipesViewController_shouldReturnRecipesViewControllerWithViewModel() {
-        guard let recipesViewController = sut.makeRecipesViewController() as? RecipesViewController else {
+        guard let recipesViewController = sut.makeRecipesViewController(withSelectionAction: { _ in }) as? RecipesViewController else {
             XCTFail("Falied to create RecipesViewController")
             return
         }
@@ -39,7 +39,7 @@ final class ViewControllerFactoryTests: XCTestCase {
     }
     
     func test_makeRecipesViewController_shouldReturnRecipesViewControllerWithItemSelectionCallback() {
-        guard let recipesViewController = sut.makeRecipesViewController() as? RecipesViewController else {
+        guard let recipesViewController = sut.makeRecipesViewController(withSelectionAction: { _ in }) as? RecipesViewController else {
             XCTFail("Falied to create RecipesViewController")
             return
         }

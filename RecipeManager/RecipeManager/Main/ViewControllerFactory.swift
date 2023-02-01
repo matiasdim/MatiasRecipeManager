@@ -9,16 +9,15 @@ import Foundation
 import UIKit
 
 protocol ViewsFactory {
-    func makeRecipesViewController() -> UIViewController
+    func makeRecipesViewController(withSelectionAction action: @escaping (Float) -> Void) -> UIViewController
     func makeRecipeDetailViewController(forID id: Float) -> UIViewController
 }
 
 struct ViewControllerFactory: ViewsFactory {
 
-    func makeRecipesViewController() -> UIViewController {
-        let selection: (Int) -> Void = { index in }
-        let viewModel = RecipesViewModel(recipes: [])
-        return RecipesViewController(viewModel: viewModel, selection: selection)
+    func makeRecipesViewController(withSelectionAction action: @escaping (Float) -> Void) -> UIViewController {
+        let viewModel = RecipesViewModel()
+        return RecipesViewController(viewModel: viewModel, selection: action)
     }
     
     func makeRecipeDetailViewController(forID id: Float) -> UIViewController {        

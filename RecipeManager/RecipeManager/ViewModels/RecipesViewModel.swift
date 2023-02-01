@@ -16,7 +16,7 @@ class RecipesViewModel {
         return 1
     }
     
-    init(recipes: [Recipe]) {
+    init(recipes: [Recipe] = []) {
         self.recipes = recipes
     }
     
