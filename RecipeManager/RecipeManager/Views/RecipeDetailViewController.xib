@@ -10,6 +10,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecipeDetailViewController" customModule="RecipeManager" customModuleProvider="target">
             <connections>
+                <outlet property="InstructionsLabel" destination="Pv2-2p-WlF" id="1X5-Y9-6Ha"/>
+                <outlet property="cookTimeLabel" destination="CeW-FY-8HZ" id="Geq-5P-IuM"/>
+                <outlet property="recipeImageView" destination="bft-Aa-1en" id="asY-VT-aRb"/>
+                <outlet property="recipeSummaryLabel" destination="ptu-Te-MFe" id="EL2-XG-8Ms"/>
+                <outlet property="servignsLabel" destination="P5H-5C-kN9" id="SN5-Dl-6eZ"/>
+                <outlet property="sourceURLLabel" destination="qCK-fK-ytQ" id="XT9-1l-qjO"/>
+                <outlet property="titleLabel" destination="Bc9-wb-rRc" id="osO-pX-T3O"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

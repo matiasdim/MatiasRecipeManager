@@ -9,6 +9,15 @@ import UIKit
 
 class RecipeDetailViewController: UIViewController {
     
+    @IBOutlet weak var recipeImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var recipeSummaryLabel: UILabel!
+    @IBOutlet weak var cookTimeLabel: UILabel!
+    @IBOutlet weak var servignsLabel: UILabel!
+    @IBOutlet weak var sourceURLLabel: UILabel!
+    @IBOutlet weak var InstructionsLabel: UILabel!
+    
+    
     let recipeID: Float
     
     init(recipeID: Float) {
