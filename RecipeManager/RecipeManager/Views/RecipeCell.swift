@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class RecipeCell: UITableViewCell {
     
@@ -20,13 +21,13 @@ class RecipeCell: UITableViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     
     
-    func configure(id: Int, title: String?, image: UIImage = .remove, isFavorite: Bool) {
+    func configure(id: Int, title: String?, imageURL: String, isFavorite: Bool) {
         self.isFavorite = isFavorite
         recipeID = id
         titleLabel.text = title
-        recipeImageView.image = image
         selectionStyle = .none
         configureFavoriteButton()
+        configureImage(imageURL: imageURL)
     }
     
     @IBAction func favoriteButtonTappe(_ sender: Any) {
@@ -34,6 +35,17 @@ class RecipeCell: UITableViewCell {
         favoriteButton.isSelected = isFavorite
         favoriteButtonAction?(recipeID)
 //        configureFavoriteButton()
+    }
+    
+    private func configureImage(imageURL: String) {
+        let url = URL(string: imageURL)
+        recipeImageView.kf.indicatorType = .activity
+        recipeImageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(systemName: "camera.filters"),
+            options: [
+                .transition(.fade(1))                
+            ])
     }
     
     private func configureFavoriteButton() {

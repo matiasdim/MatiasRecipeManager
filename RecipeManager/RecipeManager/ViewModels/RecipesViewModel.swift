@@ -49,6 +49,10 @@ class RecipesViewModel {
         return handlerSourceOfData.indices.contains(index) ? handlerSourceOfData[index].id : nil
     }
     
+    func recipeImageURL(at index: Int) -> String? {
+        return handlerSourceOfData.indices.contains(index) ? handlerSourceOfData[index].image : nil
+    }
+    
     func searchRecipes(searchText: String) {
         filteredRecipes = recipes.filter({ (item: Recipe) -> Bool in
             return item.title.lowercased().contains(searchText.lowercased())

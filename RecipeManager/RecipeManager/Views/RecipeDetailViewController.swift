@@ -34,16 +34,11 @@ class RecipeDetailViewController: UIViewController {
         
         bindViewModel()
         
-        ProgressHUD.show("Fetching Recipes")
-        viewModel.fetchRecipe()
+//        ProgressHUD.show("Fetching Recipes")
+//        viewModel.fetchRecipe()
     }
     
     // MARK: - Private
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        showDetailViewController(alert, sender: self)
-    }
     
     func configureViewInfo() {
         titleLabel.text = viewModel.viewTitle
@@ -61,7 +56,7 @@ class RecipeDetailViewController: UIViewController {
         }
         
         viewModel.presentError = { [weak self] errorDescription in
-            ProgressHUD.showFailed()
+            ProgressHUD.remove()
             self?.showAlert(title: "Error", message: errorDescription)
         }
     }

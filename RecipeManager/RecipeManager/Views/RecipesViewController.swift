@@ -42,11 +42,6 @@ class RecipesViewController: UIViewController {
     }
     
     // MARK: - Private
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        showDetailViewController(alert, sender: self)
-    }
     
     private func bindViewModel() {
         viewModel.refreshData = { [weak self] in
@@ -83,7 +78,8 @@ class RecipesViewController: UIViewController {
         let title = viewModel.cellTitle(at: index)
         let id = viewModel.recipeID(at: index) ?? 0
         let isFavorite = viewModel.isSavedAsFavorite(byID: id)
-        cell.configure(id: id, title: title, isFavorite: isFavorite)
+        let imageURL = viewModel.recipeImageURL(at: index)
+        cell.configure(id: id, title: title, imageURL: imageURL ?? "", isFavorite: isFavorite)
         cell.favoriteButtonAction = favoriteAction
     }
 }
