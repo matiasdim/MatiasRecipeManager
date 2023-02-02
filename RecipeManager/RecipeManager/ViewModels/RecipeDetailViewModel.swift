@@ -22,12 +22,18 @@ class RecipeDetailViewModel {
         recipe?.title ?? ""
     }
     
-    var cookingTime: Int {
-        recipe?.time ?? 0
+    var cookingTime: String {
+        if let cookingTime = recipe?.time {
+            return "\(cookingTime)"
+        }
+        return ""
     }
     
-    var numberOfServings: Int {
-        recipe?.servings ?? 0
+    var numberOfServings: String {
+        if let servings = recipe?.servings {
+            return "\(servings)"
+        }
+        return ""
     }
     
     var sourceURL: String {

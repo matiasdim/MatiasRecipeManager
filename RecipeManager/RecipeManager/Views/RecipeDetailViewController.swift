@@ -15,7 +15,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var cookTimeLabel: UILabel!
     @IBOutlet weak var servignsLabel: UILabel!
     @IBOutlet weak var sourceURLLabel: UILabel!
-    @IBOutlet weak var InstructionsLabel: UILabel!
+    @IBOutlet weak var instructionsLabel: UILabel!
     
     private(set) var viewModel: RecipeDetailViewModel
     
@@ -31,7 +31,12 @@ class RecipeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        titleLabel.text = viewModel.viewTitle
+        recipeSummaryLabel.text = viewModel.summary
+        cookTimeLabel.text = viewModel.cookingTime
+        servignsLabel.text = viewModel.numberOfServings
+        sourceURLLabel.text = viewModel.sourceURL
+        instructionsLabel.text = viewModel.instructions
     }
 
 }

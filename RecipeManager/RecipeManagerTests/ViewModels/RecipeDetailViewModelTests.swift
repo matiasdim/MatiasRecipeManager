@@ -35,19 +35,19 @@ final class RecipeDetailViewModelTests: XCTestCase {
     }
     
     func test_cookingTime_shouldReturnCookingTime() {
-        XCTAssertEqual(makeSUT(recipe: recipe).cookingTime, 192, "Wrong cookingTime value")
+        XCTAssertEqual(makeSUT(recipe: recipe).cookingTime, "192", "Wrong cookingTime value")
     }
     
-    func test_viewModel_withNoRecipe_shouldHaveCookingTimeValueOf0() {
-        XCTAssertEqual(makeSUT().cookingTime, 0, "Expected property value of 0 but got different value")
+    func test_viewModel_withNoRecipe_shouldHaveEmptyCookingTime() {
+        XCTAssertEqual(makeSUT().cookingTime, "", "Expected property value of 0 but got different value")
     }
     
     func test_numberOfServings_shouldReturnNumberOfServings() {
-        XCTAssertEqual(makeSUT(recipe: recipe).numberOfServings, 5, "Wrong numberOfServings value")
+        XCTAssertEqual(makeSUT(recipe: recipe).numberOfServings, "5", "Wrong numberOfServings value")
     }
     
-    func test_viewModel_withNoRecipe_shouldHaveNumberOfServingsValueOf0() {
-        XCTAssertEqual(makeSUT().numberOfServings, 0, "Expected property value of 0 but got different value")
+    func test_viewModel_withNoRecipe_shouldHaveEmptyNumberOfServings() {
+        XCTAssertEqual(makeSUT().numberOfServings, "", "Expected property value of 0 but got different value")
     }
     
     func test_sourceURL_shouldReturnSourceURL() {
