@@ -7,6 +7,7 @@
 
 import UIKit
 import ProgressHUD
+import Kingfisher
 
 class RecipeDetailViewController: UIViewController {
     
@@ -47,6 +48,8 @@ class RecipeDetailViewController: UIViewController {
         servignsLabel.text = viewModel.numberOfServings
         sourceURLLabel.text = viewModel.sourceURL
         instructionsLabel.text = viewModel.instructions
+        
+        configureImage(imageURL: viewModel.image)
     }
     
     private func bindViewModel() {
@@ -61,6 +64,16 @@ class RecipeDetailViewController: UIViewController {
         }
     }
     
+    private func configureImage(imageURL: String) {
+        let url = URL(string: imageURL)
+        recipeImageView.kf.indicatorType = .activity
+        recipeImageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(systemName: "camera.filters"),
+            options: [
+                .transition(.fade(1))
+            ])
+    }
     
 
 }
