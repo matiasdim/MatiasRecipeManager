@@ -17,20 +17,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9XY-aQ-Zjj">
-                        <rect key="frame" x="24" y="24" width="60" height="60"/>
+                        <rect key="frame" x="24" y="23.666666666666671" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="FZg-7a-nFX"/>
                             <constraint firstAttribute="width" constant="60" id="g3b-fR-Eoh"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCL-vh-Ooc">
-                        <rect key="frame" x="108" y="24" width="211" height="60"/>
+                        <rect key="frame" x="108" y="24" width="211" height="59"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRc-cS-vDf">
-                        <rect key="frame" x="329" y="34" width="40" height="40"/>
+                        <rect key="frame" x="329" y="33.666666666666664" width="40" height="39.999999999999993"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="cPx-e1-0K7"/>
                             <constraint firstAttribute="height" constant="40" id="rwL-zp-ttT"/>
@@ -47,11 +47,9 @@
                     <constraint firstAttribute="trailing" secondItem="eRc-cS-vDf" secondAttribute="trailing" constant="24" id="8zJ-Ys-XYB"/>
                     <constraint firstItem="jCL-vh-Ooc" firstAttribute="leading" secondItem="9XY-aQ-Zjj" secondAttribute="trailing" constant="24" id="FMa-QI-gmM"/>
                     <constraint firstItem="eRc-cS-vDf" firstAttribute="centerY" secondItem="jCL-vh-Ooc" secondAttribute="centerY" id="GyO-Ml-WIh"/>
-                    <constraint firstItem="9XY-aQ-Zjj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HJG-dY-ikM"/>
                     <constraint firstItem="jCL-vh-Ooc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="Hmt-iv-xn3"/>
                     <constraint firstItem="9XY-aQ-Zjj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="YHG-nZ-F56"/>
-                    <constraint firstItem="9XY-aQ-Zjj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="e4m-mc-eng"/>
-                    <constraint firstAttribute="bottom" secondItem="9XY-aQ-Zjj" secondAttribute="bottom" constant="24" id="gJM-xC-fGn"/>
+                    <constraint firstItem="9XY-aQ-Zjj" firstAttribute="centerY" secondItem="jCL-vh-Ooc" secondAttribute="centerY" id="a8l-MC-JT6"/>
                     <constraint firstAttribute="bottom" secondItem="jCL-vh-Ooc" secondAttribute="bottom" constant="24" id="jde-mq-9LX"/>
                     <constraint firstItem="jCL-vh-Ooc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kUd-D0-E0j"/>
                     <constraint firstItem="eRc-cS-vDf" firstAttribute="leading" secondItem="jCL-vh-Ooc" secondAttribute="trailing" constant="10" id="xyQ-d4-udJ"/>
