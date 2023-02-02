@@ -18,6 +18,7 @@ class RecipesViewModel {
     private(set) var viewTitle = "Recipes"
     private(set) var searchBarPlaceholder = "Search..."
     
+    var service: RecipeService
     var refreshData: (() -> Void)?
     var presentError: ((String) -> Void)?
     var isSearching = false
@@ -25,9 +26,12 @@ class RecipesViewModel {
         return 1
     }
     
-    init(recipes: [Recipe] = [], filteredRecipes: [Recipe] = []) {
+    init(recipes: [Recipe] = [],
+         filteredRecipes: [Recipe] = [],
+         service: RecipeService = RecipeAPIdapter()) {
         self.recipes = recipes
         self.filteredRecipes = filteredRecipes
+        self.service = service
     }
     
     func numbersOfRows(in section: Int = 0) -> Int {
@@ -38,7 +42,7 @@ class RecipesViewModel {
         return handlerSourceOfData.indices.contains(index) ? handlerSourceOfData[index].title : nil
     }
     
-    func recipeID(at index: Int) -> Float? {
+    func recipeID(at index: Int) -> Int? {
         return handlerSourceOfData.indices.contains(index) ? handlerSourceOfData[index].id : nil
     }
     
@@ -51,8 +55,7 @@ class RecipesViewModel {
     func fetchRecipes() {
         Task {
             do {
-                let recipeResponse = try await NetworkManager().fetch(path: .list, decodableType: RecipesApiResponse.self)
-                recipes = recipeResponse.results
+                recipes = try await service.fetchRecipes()
                 DispatchQueue.main.async { [weak self] in
                     self?.refreshData?()
                 }

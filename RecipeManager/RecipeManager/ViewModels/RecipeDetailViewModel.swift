@@ -8,59 +8,66 @@
 import Foundation
 
 class RecipeDetailViewModel {
-    private let recipe: Recipe?
+    private var recipe: Recipe?
+    private let recipeID: Int?
+    
+    var dataReady: (() -> Void)?
+    var presentError: ((String) -> Void)?
         
-    init(recipe: Recipe? = nil) {
+    init(recipe: Recipe? = nil, recipeID: Int? = nil) {
         self.recipe = recipe
+        self.recipeID = recipeID
     }
     
     var viewTitle: String {
-        recipe?.title ?? ""
+        recipe?.title ?? "-"
     }
     
     var recipeTitle: String {
-        recipe?.title ?? ""
+        recipe?.title ?? "-"
     }
     
     var cookingTime: String {
         if let cookingTime = recipe?.time {
             return "\(cookingTime)"
         }
-        return ""
+        return "-"
     }
     
     var numberOfServings: String {
         if let servings = recipe?.servings {
             return "\(servings)"
         }
-        return ""
+        return "-"
     }
     
     var sourceURL: String {
-        recipe?.sourceURL ?? ""
+        recipe?.sourceURL ?? "-"
     }
     
     var summary: String {
-        recipe?.summary ?? ""
+        recipe?.summary ?? "-"
     }
     
     var instructions: String {
-        recipe?.instructions ?? ""
+        recipe?.instructions ?? "-"
     }
     
-    func fetchRecipes() {
-//        Task {
-//            do {
-//                let recipeResponse = try await NetworkManager().fetch(path: .detail(<#T##Int#>))
-//                recipes = recipeResponse.results
-//                DispatchQueue.main.async { [weak self] in
-//                    self?.refreshData?()
-//                }
-//            } catch {
-//                DispatchQueue.main.async { [weak self] in
-//                    self?.presentError?(error.localizedDescription)
-//                }
-//            }
-//        }
+    func fetchRecipe() {
+        if let recipeID = recipeID {
+            Task {
+                do {
+                    let recipe = try await NetworkManager().fetch(path: .detail(recipeID), decodableType: Recipe.self)
+                    self.recipe = recipe
+                    DispatchQueue.main.async { [weak self] in
+                        self?.dataReady?()
+                    }
+                } catch {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.presentError?(error.localizedDescription)
+                    }
+                }
+            }
+        }
     }
 }

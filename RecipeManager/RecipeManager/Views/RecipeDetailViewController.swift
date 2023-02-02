@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class RecipeDetailViewController: UIViewController {
     
@@ -30,7 +31,21 @@ class RecipeDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        bindViewModel()
+        
+        ProgressHUD.show("Fetching Recipes")
+        viewModel.fetchRecipe()
+    }
+    
+    // MARK: - Private
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        showDetailViewController(alert, sender: self)
+    }
+    
+    func configureViewInfo() {
         titleLabel.text = viewModel.viewTitle
         recipeSummaryLabel.text = viewModel.summary
         cookTimeLabel.text = viewModel.cookingTime
@@ -38,5 +53,19 @@ class RecipeDetailViewController: UIViewController {
         sourceURLLabel.text = viewModel.sourceURL
         instructionsLabel.text = viewModel.instructions
     }
+    
+    private func bindViewModel() {
+        viewModel.dataReady = { [weak self] in
+            ProgressHUD.showSucceed()
+            self?.configureViewInfo()
+        }
+        
+        viewModel.presentError = { [weak self] errorDescription in
+            ProgressHUD.showFailed()
+            self?.showAlert(title: "Error", message: errorDescription)
+        }
+    }
+    
+    
 
 }

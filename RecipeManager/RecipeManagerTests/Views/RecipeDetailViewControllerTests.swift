@@ -39,36 +39,42 @@ final class RecipeDetailViewControllerTests: XCTestCase {
     
     func test_titleLabelText_shouldBeCorrect() {
         sut.loadViewIfNeeded()
+        sut.configureViewInfo()
         
         XCTAssertEqual(sut.titleLabel.text, "Test Title", "Unexpected value for titleLabel")
     }
     
     func test_recipeSummaryLabelText_shouldBeCorrect() {
         sut.loadViewIfNeeded()
+        sut.configureViewInfo()
         
         XCTAssertEqual(sut.recipeSummaryLabel.text, "This is the summary of the recipe", "Unexpected value for recipeSummaryLabel")
     }
     
     func test_cookTimeLabelText_shouldBeCorrect() {
         sut.loadViewIfNeeded()
+        sut.configureViewInfo()
         
         XCTAssertEqual(sut.cookTimeLabel.text, "192", "Unexpected value for cookTimeLabel")
     }
     
     func test_servignsLabelText_shouldBeCorrect() {
         sut.loadViewIfNeeded()
+        sut.configureViewInfo()
         
         XCTAssertEqual(sut.servignsLabel.text, "5", "Unexpected value for servignsLabel")
     }
     
     func test_sourceURLLabelText_shouldBeCorrect() {
         sut.loadViewIfNeeded()
+        sut.configureViewInfo()
         
         XCTAssertEqual(sut.sourceURLLabel.text, "", "Unexpected value for sourceURLLabel")
     }
     
     func test_instructionsLabelText_shouldBeCorrect() {
         sut.loadViewIfNeeded()
+        sut.configureViewInfo()
         
         XCTAssertEqual(sut.instructionsLabel.text, "The instructions of the recipe comes here", "Unexpected value for instructionsLabel")
     }

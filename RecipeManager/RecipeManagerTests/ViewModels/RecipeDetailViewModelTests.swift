@@ -15,7 +15,7 @@ final class RecipeDetailViewModelTests: XCTestCase {
     }
     
     func test_viewModel_withNoRecipe_shouldInitNoRecipe() {
-        XCTAssertEqual(makeSUT().recipeTitle, "", "Expected empty property value but got different value")
+        XCTAssertEqual(makeSUT().recipeTitle, "-", "Expected empty property value but got different value")
     }
 
     func test_viewModel_shouldReturnViewTitle() {
@@ -23,7 +23,7 @@ final class RecipeDetailViewModelTests: XCTestCase {
     }
     
     func test_viewModel_withNoRecipe_shouldHaveEmptyViewTitle() {
-        XCTAssertEqual(makeSUT().viewTitle, "", "Expected empty property value but got different value")
+        XCTAssertEqual(makeSUT().viewTitle, "-", "Expected empty property value but got different value")
     }
     
     func test_recipeTitle_shouldReturnRecipeTitle() {
@@ -31,7 +31,7 @@ final class RecipeDetailViewModelTests: XCTestCase {
     }
     
     func test_viewModel_withNoRecipe_shouldHaveEmptyRecipeTitle() {
-        XCTAssertEqual(makeSUT().recipeTitle, "", "Expected empty property value but got different value")
+        XCTAssertEqual(makeSUT().recipeTitle, "-", "Expected empty property value but got different value")
     }
     
     func test_cookingTime_shouldReturnCookingTime() {
@@ -39,7 +39,7 @@ final class RecipeDetailViewModelTests: XCTestCase {
     }
     
     func test_viewModel_withNoRecipe_shouldHaveEmptyCookingTime() {
-        XCTAssertEqual(makeSUT().cookingTime, "", "Expected property value of 0 but got different value")
+        XCTAssertEqual(makeSUT().cookingTime, "-", "Expected property value of 0 but got different value")
     }
     
     func test_numberOfServings_shouldReturnNumberOfServings() {
@@ -47,7 +47,7 @@ final class RecipeDetailViewModelTests: XCTestCase {
     }
     
     func test_viewModel_withNoRecipe_shouldHaveEmptyNumberOfServings() {
-        XCTAssertEqual(makeSUT().numberOfServings, "", "Expected property value of 0 but got different value")
+        XCTAssertEqual(makeSUT().numberOfServings, "-", "Expected property value of 0 but got different value")
     }
     
     func test_sourceURL_shouldReturnSourceURL() {
@@ -55,7 +55,7 @@ final class RecipeDetailViewModelTests: XCTestCase {
     }
     
     func test_viewModel_withNoRecipe_shouldHaveEmptySourceURL() {
-        XCTAssertEqual(makeSUT().sourceURL, "", "Expected empty property value but got different value")
+        XCTAssertEqual(makeSUT().sourceURL, "-", "Expected empty property value but got different value")
     }
     
     func test_summary_shouldReturnRecipeSummary() {
@@ -63,7 +63,7 @@ final class RecipeDetailViewModelTests: XCTestCase {
     }
     
     func test_viewModel_withNoRecipe_shouldHaveEmptySummary() {
-        XCTAssertEqual(makeSUT().summary, "", "Expected empty property value but got different value")
+        XCTAssertEqual(makeSUT().summary, "-", "Expected empty property value but got different value")
     }
     
     func test_instructions_shouldReturnInstructions() {
@@ -73,7 +73,7 @@ final class RecipeDetailViewModelTests: XCTestCase {
     }
     
     func test_viewModel_withNoRecipe_shouldHaveEmptyInstructions() {
-        XCTAssertEqual(makeSUT().instructions, "", "Expected empty property value but got different value")
+        XCTAssertEqual(makeSUT().instructions, "-", "Expected empty property value but got different value")
     }
     
     // MARK: - private

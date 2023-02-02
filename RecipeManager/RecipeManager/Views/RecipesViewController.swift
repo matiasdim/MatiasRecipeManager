@@ -15,9 +15,9 @@ class RecipesViewController: UIViewController {
     lazy var searchBar: UISearchBar = UISearchBar()
     
     private(set) var viewModel: RecipesViewModel
-    private(set) var selection: (Float) -> Void
+    private(set) var selection: (Int) -> Void
     
-    init(viewModel: RecipesViewModel, selection: @escaping (Float) -> ()) {
+    init(viewModel: RecipesViewModel, selection: @escaping (Int) -> ()) {
         self.viewModel = viewModel
         self.selection = selection
         super.init(nibName: nil, bundle: nil)

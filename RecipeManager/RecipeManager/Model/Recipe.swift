@@ -12,7 +12,7 @@ struct RecipesApiResponse: Decodable {
 }
 
 struct Recipe: Decodable {
-    let id: Float
+    let id: Int
     let title: String
     let image: String
     

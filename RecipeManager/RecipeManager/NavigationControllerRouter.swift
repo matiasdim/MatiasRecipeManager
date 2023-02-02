@@ -11,9 +11,9 @@ class NavigationControllerRouter {
     private(set) var navController: UINavigationController
     private(set) var factory: ViewsFactory
     
-    var recipeSelectionAction: ((Float) -> Void)
+    var recipeSelectionAction: ((Int) -> Void)
     
-    init(navController: UINavigationController, factory: ViewsFactory, recipeSelectionAction: @escaping ((Float) -> Void) = { _ in }) {
+    init(navController: UINavigationController, factory: ViewsFactory, recipeSelectionAction: @escaping ((Int) -> Void) = { _ in }) {
         self.factory = factory
         self.navController = navController
         self.recipeSelectionAction = recipeSelectionAction
@@ -27,7 +27,7 @@ class NavigationControllerRouter {
         navController.pushViewController(recipesVC, animated: false)
     }
     
-    func pushRecipeDetail(forID id: Float) {
+    func pushRecipeDetail(forID id: Int) {
         let recipeDetailVC = factory.makeRecipeDetailViewController(forID: id)
         navController.pushViewController(recipeDetailVC, animated: true)        
     }

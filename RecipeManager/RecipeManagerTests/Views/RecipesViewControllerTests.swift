@@ -205,8 +205,8 @@ final class RecipesViewControllerTests: XCTestCase {
     
     private let recipe2 = Recipe(id: 2, title: "Test Title 2", image: "", time: 192, servings: 5, sourceURL: "", summary: "This is the summary of the recipe", instructions: "The instructions of the recipe comes here")
     
-    private func selectedRecipeID(atRow row: Int) -> Float {
-        var selectedRecipeID: Float = 0
+    private func selectedRecipeID(atRow row: Int) -> Int {
+        var selectedRecipeID: Int = 0
         let selectionCallback = { index in
             selectedRecipeID = index
         }
@@ -218,7 +218,7 @@ final class RecipesViewControllerTests: XCTestCase {
         return selectedRecipeID
     }
     
-    private func makeSUT(withRecipes recipes: [Recipe] = [], selection : @escaping ((Float) -> ()) = { _ in }) -> RecipesViewController {
+    private func makeSUT(withRecipes recipes: [Recipe] = [], selection : @escaping ((Int) -> ()) = { _ in }) -> RecipesViewController {
         let viewModel = RecipesViewModel(recipes: recipes)
         let sut = RecipesViewController(viewModel: viewModel, selection: selection)
         sut.loadViewIfNeeded()
