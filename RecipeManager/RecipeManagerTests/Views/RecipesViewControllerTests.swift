@@ -31,6 +31,31 @@ final class RecipesViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.tableView.dataSource)
     }
     
+    func test_searchbarDelegate_shouldBeSet() {
+        let sut = makeSUT()
+        
+        XCTAssertNotNil(sut.searchBar.delegate)
+    }
+    
+    func test_setupTableToRegisterCellNib_shouldBeCalledAfterViewLoads() {
+        let sut = makeSUT()
+        
+        XCTAssertNotNil(sut.tableView.dequeueReusableCell(withIdentifier: RecipeCell.className))
+    }
+    
+    func test_configureSearchBar_shouldBeCalledAfterViewLoads() {
+        let sut = makeSUT()
+        
+        XCTAssertEqual(sut.searchBar.placeholder, "Search...")
+        XCTAssertTrue(sut.searchBar.showsCancelButton)
+    }
+    
+    func test_configureSearchBar_shouldBeConfiguredAsTableHeaderView() {
+        let sut = makeSUT()
+        
+        XCTAssertEqual(sut.tableView.tableHeaderView, sut.searchBar)
+    }
+    
     func test_tableViewNumberOfSections_shouldBe0() {
         XCTAssertEqual(makeSUT().tableView.numberOfSections, 1, "Number of sections is incorrect")
     }
@@ -77,6 +102,104 @@ final class RecipesViewControllerTests: XCTestCase {
         XCTAssertEqual(selectedRecipeID(atRow: 1), 0, "didSelectAt called and it was not expected")
     }
     
+    func test_searchBarTextDidChange_withEmptyText_shouldChangeVMIsSearchingToFalse() {
+        let sut = makeSUT()
+        
+        sut.viewModel.isSearching = true
+        XCTAssertTrue(sut.viewModel.isSearching)
+        
+        textDidChange(in: sut.searchBar, text: "")
+        
+        XCTAssertFalse(sut.viewModel.isSearching)
+    }
+    
+    func test_searchBarTextDidChange_withText_shouldChangeVMIsSearchingToTrue() {
+        let sut = makeSUT()
+        
+        sut.viewModel.isSearching = false
+        XCTAssertFalse(sut.viewModel.isSearching)
+        
+        textDidChange(in: sut.searchBar, text: "Searching test")
+        
+        XCTAssertTrue(sut.viewModel.isSearching)
+    }
+    
+    func test_searchBarTextDidChange_withText_shoulCallSearchRecipesFromVM() {
+        let spyVM = RecipesViewModelSpy()
+        let sut = RecipesViewController(viewModel: spyVM, selection: { _ in })
+        sut.loadViewIfNeeded()
+        
+        XCTAssertFalse(spyVM.searchRecipesCalled)
+        textDidChange(in: sut.searchBar, text: "Searching test")
+        
+        XCTAssertTrue(spyVM.searchRecipesCalled)
+    }
+    
+    func test_searchBarCancelButtonClicked_shouldEmptySearchText() {
+        let sut = makeSUT()
+        sut.searchBar.text = "search"
+        
+        XCTAssertEqual(sut.searchBar.text, "search")
+        searchBarCancelButtonClicked(in: sut.searchBar)
+        
+        XCTAssertEqual(sut.searchBar.text, "")
+    }
+    
+    func test_searchBarCancelButtonClicked_shouldSetVMisSearchingToFalse() {
+        let sut = makeSUT()
+        
+        sut.viewModel.isSearching = true
+        XCTAssertTrue(sut.viewModel.isSearching)
+        
+        searchBarCancelButtonClicked(in: sut.searchBar)
+        
+        XCTAssertFalse(sut.viewModel.isSearching)
+    }
+    
+    func test_searchBarShouldBeginEditing_withTextSearch_shouldSetVMisSearchingToTrueAndReturnTrue() {
+        let sut = makeSUT()
+        
+        sut.searchBar.text = "search"
+        sut.viewModel.isSearching = false
+        XCTAssertFalse(sut.viewModel.isSearching)
+        
+        guard let shouldBeginEditing = sut.searchBar.delegate?.searchBarShouldBeginEditing?(sut.searchBar) else {
+            XCTFail("shouldBeginEditing should not be nil ")
+            return
+        }
+        XCTAssertTrue(sut.viewModel.isSearching)
+        XCTAssertTrue(shouldBeginEditing)
+    }
+    
+    func test_searchBarShouldBeginEditing_withNoTextSearch_shouldReturnTrueAndNotAlterIsSearchValue() {
+        let sut = makeSUT()
+                
+        sut.viewModel.isSearching = false
+        XCTAssertFalse(sut.viewModel.isSearching)
+        
+        guard let shouldBeginEditing = sut.searchBar.delegate?.searchBarShouldBeginEditing?(sut.searchBar) else {
+            XCTFail("shouldBeginEditing should not be nil ")
+            return
+        }
+        XCTAssertFalse(sut.viewModel.isSearching)
+        XCTAssertTrue(shouldBeginEditing)
+    }
+    
+    func test_searchBarShouldBeginEditing_withEmptyTextSearch_shouldReturnTrueAndNotAlterIsSearchValue() {
+        let sut = makeSUT()
+        
+        sut.searchBar.text = ""
+        sut.viewModel.isSearching = false
+        XCTAssertFalse(sut.viewModel.isSearching)
+        
+        guard let shouldBeginEditing = sut.searchBar.delegate?.searchBarShouldBeginEditing?(sut.searchBar) else {
+            XCTFail("shouldBeginEditing should not be nil ")
+            return
+        }
+        XCTAssertFalse(sut.viewModel.isSearching)
+        XCTAssertTrue(shouldBeginEditing)
+    }
+    
     // MARK: - Private helpers
     private let recipe1 = Recipe(id: 1, title: "Test Title", image: "", time: 192, servings: 5, sourceURL: "", summary: "This is the summary of the recipe", instructions: "The instructions of the recipe comes here")
     
@@ -100,5 +223,14 @@ final class RecipesViewControllerTests: XCTestCase {
         let sut = RecipesViewController(viewModel: viewModel, selection: selection)
         sut.loadViewIfNeeded()
         return sut
+    }
+}
+
+class RecipesViewModelSpy : RecipesViewModel {
+    var searchRecipesCalled: Bool = false
+    
+    override func searchRecipes(searchText: String) {
+        super.searchRecipes(searchText: searchText)
+        searchRecipesCalled = true
     }
 }

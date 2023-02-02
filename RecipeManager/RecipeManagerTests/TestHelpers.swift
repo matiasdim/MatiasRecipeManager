@@ -26,3 +26,11 @@ func didSelectRowAt(in table: UITableView, indexPath: IndexPath) {
 func exectureRunLoop() {
     RunLoop.current.run(until: Date())
 }
+
+func textDidChange(in searchBar: UISearchBar, text: String){
+    searchBar.delegate?.searchBar?(searchBar, textDidChange: text)
+}
+
+func searchBarCancelButtonClicked(in searchBar: UISearchBar) {
+    searchBar.delegate?.searchBarCancelButtonClicked?(searchBar)
+}

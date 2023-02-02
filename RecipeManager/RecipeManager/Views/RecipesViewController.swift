@@ -33,9 +33,26 @@ class RecipesViewController: UIViewController {
         
         setupTable()
         configureSearchBar()
+        bindViewModel()
     }
     
     // MARK: - Private
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        showDetailViewController(alert, sender: self)
+    }
+    
+    private func bindViewModel() {
+        viewModel.refreshData = { [weak self] in
+            self?.tableView.reloadData()
+        }
+        
+        viewModel.presentError = { [weak self] errorDescription in
+            self?.showAlert(title: "Error", message: errorDescription)
+        }
+    }
+    
     private func setupTable() {
         tableView.register(UINib(nibName: RecipeCell.className,
                                  bundle: nil),
@@ -53,12 +70,6 @@ class RecipesViewController: UIViewController {
     private func configure(_ cell: RecipeCell, at index: Int) {
         let title = viewModel.cellTitle(at: index)
         cell.configure(title: title)
-    }
-    
-    @objc private func showSearchBar() {
-        tableView.tableHeaderView = searchBar
-        searchBar.becomeFirstResponder()
-        tableView.refreshControl?.endRefreshing()
     }
 }
 

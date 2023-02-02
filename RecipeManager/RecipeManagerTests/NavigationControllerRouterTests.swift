@@ -63,7 +63,6 @@ final class NavigationControllerRouterTests: XCTestCase {
     
 }
 
-
 class NavigationControllerSpy : UINavigationController {
     private(set) var lastVCPushedAnimated: Bool = false
     
