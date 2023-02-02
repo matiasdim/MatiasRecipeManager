@@ -8,6 +8,7 @@ target 'RecipeManager' do
   # Pods for RecipeManager
   pod 'Alamofire'
   pod 'ProgressHUD'
+  pod 'Kingfisher', '~> 7.0'
 
   target 'RecipeManagerTests' do
     inherit! :search_paths
