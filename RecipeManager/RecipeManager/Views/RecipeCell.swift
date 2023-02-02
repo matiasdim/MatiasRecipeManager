@@ -44,7 +44,7 @@ class RecipeCell: UITableViewCell {
             with: url,
             placeholder: UIImage(systemName: "camera.filters"),
             options: [
-                .transition(.fade(1))                
+                .transition(.fade(0.2))                
             ])
     }
     

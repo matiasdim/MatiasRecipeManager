@@ -25,6 +25,7 @@ struct Recipe: Decodable {
     var isFavorite = false
     
     enum CodingKeys: String, CodingKey {
-        case id, title, image, time, servings, sourceURL, summary, instructions
+        case id, title, image, servings, sourceURL, summary, instructions
+        case time = "readyInMinutes"
     }
 }

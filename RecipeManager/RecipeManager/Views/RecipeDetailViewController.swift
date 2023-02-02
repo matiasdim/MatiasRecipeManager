@@ -34,9 +34,9 @@ class RecipeDetailViewController: UIViewController {
         super.viewDidLoad()
         
         bindViewModel()
-        configureViewInfo()
-//        ProgressHUD.show("Fetching Recipes")
-//        viewModel.fetchRecipe()
+        
+        ProgressHUD.show("Fetching Recipes")
+        viewModel.fetchRecipe()
     }
     
     // MARK: - Private
@@ -71,7 +71,7 @@ class RecipeDetailViewController: UIViewController {
             with: url,
             placeholder: UIImage(systemName: "camera.filters"),
             options: [
-                .transition(.fade(1))
+                .transition(.fade(0.2))
             ])
     }
     

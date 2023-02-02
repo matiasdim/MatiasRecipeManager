@@ -12,7 +12,7 @@ import UIKit
 struct NetworkManager {
     
     let baseURL = "https://api.spoonacular.com"
-    let apiKey = "4a04bd5b48a041c49fd285e554cb1f79"
+    let apiKey = "327ce78508e140a4a44d3877f4b18433"//"4a04bd5b48a041c49fd285e554cb1f79"
     
     enum APIPaths {
         case list
