@@ -43,11 +43,11 @@ class RecipeDetailViewController: UIViewController {
     
     func configureViewInfo() {
         titleLabel.text = viewModel.viewTitle
-        recipeSummaryLabel.text = viewModel.summary
+        recipeSummaryLabel.text = viewModel.summary.htmlToString
         cookTimeLabel.text = viewModel.cookingTime
         servignsLabel.text = viewModel.numberOfServings
         sourceURLLabel.text = viewModel.sourceURL
-        instructionsLabel.text = viewModel.instructions
+        instructionsLabel.text = viewModel.instructions.htmlToString
         
         configureImage(imageURL: viewModel.image)
     }
