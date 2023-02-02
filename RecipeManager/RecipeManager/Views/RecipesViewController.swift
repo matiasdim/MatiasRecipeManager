@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class RecipesViewController: UIViewController {
     
@@ -35,7 +36,7 @@ class RecipesViewController: UIViewController {
         configureSearchBar()
         bindViewModel()
         
-        // TODO: - Add progres indicator
+        ProgressHUD.show("Fetching Recipes")
         viewModel.fetchRecipes()
     }
     
@@ -48,12 +49,12 @@ class RecipesViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.refreshData = { [weak self] in
-            // TODO: - Dismiss progres indicator
+            ProgressHUD.showSucceed()
             self?.tableView.reloadData()
         }
         
         viewModel.presentError = { [weak self] errorDescription in
-            // TODO: - Dismiss progres indicator
+            ProgressHUD.showFailed()            
             self?.showAlert(title: "Error", message: errorDescription)
         }
     }

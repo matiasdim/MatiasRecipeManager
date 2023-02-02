@@ -7,13 +7,10 @@ target 'RecipeManager' do
 
   # Pods for RecipeManager
   pod 'Alamofire'
+  pod 'ProgressHUD'
 
   target 'RecipeManagerTests' do
     inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'RecipeManagerUITests' do
     # Pods for testing
   end
 
