@@ -11,6 +11,8 @@ class RecipesViewController: UIViewController {
     
     @IBOutlet private(set) weak var tableView: UITableView!
     
+    lazy var searchBar: UISearchBar = UISearchBar()
+    
     private(set) var viewModel: RecipesViewModel
     private(set) var selection: (Float) -> Void
     
@@ -30,6 +32,7 @@ class RecipesViewController: UIViewController {
         title = viewModel.viewTitle
         
         setupTable()
+        configureSearchBar()
     }
     
     // MARK: - Private
@@ -39,9 +42,23 @@ class RecipesViewController: UIViewController {
                            forCellReuseIdentifier: RecipeCell.className)
     }
     
+    private func configureSearchBar() {
+        searchBar.placeholder = viewModel.searchBarPlaceholder
+        searchBar.showsCancelButton = true
+        searchBar.sizeToFit()
+        searchBar.delegate = self
+        tableView.tableHeaderView = searchBar
+    }
+    
     private func configure(_ cell: RecipeCell, at index: Int) {
         let title = viewModel.cellTitle(at: index)
         cell.configure(title: title)
+    }
+    
+    @objc private func showSearchBar() {
+        tableView.tableHeaderView = searchBar
+        searchBar.becomeFirstResponder()
+        tableView.refreshControl?.endRefreshing()
     }
 }
 
@@ -75,4 +92,28 @@ extension RecipesViewController: UITableViewDelegate {
         selection(recipeID)
     }
 }
+ 
+
+extension RecipesViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            viewModel.isSearching = false
+        } else {
+            viewModel.isSearching = true
+            viewModel.searchRecipes(searchText: searchText)
+        }
+        tableView.reloadData()
+    }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        viewModel.isSearching = false
+        tableView.reloadData()
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        viewModel.isSearching = true
+        return true
+    }
+}

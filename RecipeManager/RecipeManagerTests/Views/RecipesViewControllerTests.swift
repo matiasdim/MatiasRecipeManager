@@ -101,14 +101,4 @@ final class RecipesViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         return sut
     }
-                          
-//    private class TestableRecipesViewModel: RecipesViewModel {
-//        var testArrayOfRecipes: [Recipe]
-//
-//        override init(recipes: [Recipe]) {
-//            testArrayOfRecipes = recipes
-//            super.init(recipes: recipes)
-//        }
-//    }
-
 }

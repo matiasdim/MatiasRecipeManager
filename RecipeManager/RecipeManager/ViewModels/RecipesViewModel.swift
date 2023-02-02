@@ -8,9 +8,18 @@
 import Foundation
 
 class RecipesViewModel {
-    private let recipes: [Recipe]
+    private var recipes: [Recipe]
+    private var filteredRecipes: [Recipe] = []
+    
+    private var handlerSourceOfData: [Recipe] {
+        isSearching ? filteredRecipes : recipes
+    }
     
     private(set) var viewTitle = "Recipes"
+    
+    private(set) var searchBarPlaceholder = "Search..."
+    
+    var isSearching = false
         
     var numbersOfSections: Int {
         return 1
@@ -21,14 +30,21 @@ class RecipesViewModel {
     }
     
     func numbersOfRows(in section: Int = 0) -> Int {
-        return recipes.count
+        return handlerSourceOfData.count
     }
     
     func cellTitle(at index: Int) -> String? {
-        return recipes.indices.contains(index) ? recipes[index].title : nil
+        return handlerSourceOfData.indices.contains(index) ? recipes[index].title : nil
     }
     
     func recipeID(at index: Int) -> Float? {
-        return recipes.indices.contains(index) ? recipes[index].id : nil
+        return handlerSourceOfData.indices.contains(index) ? recipes[index].id : nil
     }
+    
+    func searchRecipes(searchText: String) {
+        filteredRecipes = recipes.filter({ (item: Recipe) -> Bool in
+            return item.title.lowercased().contains(searchText.lowercased())
+        })
+    }
+    
 }
