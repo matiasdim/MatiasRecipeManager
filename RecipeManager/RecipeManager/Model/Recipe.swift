@@ -23,4 +23,8 @@ struct Recipe: Decodable {
     let instructions: String?
     
     var isFavorite = false
+    
+    enum CodingKeys: String, CodingKey {
+        case id, title, image, time, servings, sourceURL, summary, instructions
+    }
 }
