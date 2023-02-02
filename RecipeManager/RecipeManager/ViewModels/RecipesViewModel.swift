@@ -51,7 +51,7 @@ class RecipesViewModel {
     func fetchRecipes() {
         Task {
             do {
-                let recipeResponse = try await NetworkManager().fetch(path: .list)
+                let recipeResponse = try await NetworkManager().fetch(path: .list, decodableType: RecipesApiResponse.self)
                 recipes = recipeResponse.results
                 DispatchQueue.main.async { [weak self] in
                     self?.refreshData?()

@@ -6,6 +6,8 @@
 //
 
 import Alamofire
+import Foundation
+import UIKit
 
 struct NetworkManager {
     
@@ -26,10 +28,10 @@ struct NetworkManager {
         }
     }
     
-    func fetch(path: APIPaths) async throws -> RecipesApiResponse {
+    func fetch<T: Decodable>(path: APIPaths, decodableType: T.Type) async throws -> T {
         //&number=20&offset=19
         do {
-            let value = try await AF.request("\(baseURL)/\(path.value())?apiKey=\(apiKey)").serializingDecodable(RecipesApiResponse.self).value
+            let value = try await AF.request("\(baseURL)/\(path.value())?apiKey=\(apiKey)").serializingDecodable(T.self).value
             return value
         } catch {
             throw error
