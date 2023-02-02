@@ -34,6 +34,8 @@
 		131A8E11298B160800EE2CDD /* RecipeDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131A8E10298B160800EE2CDD /* RecipeDetailViewControllerTests.swift */; };
 		138BEEF6298B661300DAF722 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138BEEF5298B661300DAF722 /* NetworkManager.swift */; };
 		138BEEF8298B830400DAF722 /* RecipeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138BEEF7298B830400DAF722 /* RecipeAPI.swift */; };
+		138BEEFB298BEACA00DAF722 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138BEEFA298BEACA00DAF722 /* PersistanceManager.swift */; };
+		138BEEFD298BEE2B00DAF722 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138BEEFC298BEE2B00DAF722 /* UserDefaultsManager.swift */; };
 		17C16716E9BE3B1BB19AA5CC /* Pods_RecipeManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203E75697109A09740894B77 /* Pods_RecipeManager.framework */; };
 		8F2E2AF2A214DB16244CC346 /* Pods_RecipeManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16CDF7A14935606B17A9FDC /* Pods_RecipeManagerTests.framework */; };
 /* End PBXBuildFile section */
@@ -81,6 +83,8 @@
 		131A8E10298B160800EE2CDD /* RecipeDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		138BEEF5298B661300DAF722 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		138BEEF7298B830400DAF722 /* RecipeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPI.swift; sourceTree = "<group>"; };
+		138BEEFA298BEACA00DAF722 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
+		138BEEFC298BEE2B00DAF722 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		203E75697109A09740894B77 /* Pods_RecipeManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecipeManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED75A4A40777969033C58A2 /* Pods-RecipeManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeManager.release.xcconfig"; path = "Target Support Files/Pods-RecipeManager/Pods-RecipeManager.release.xcconfig"; sourceTree = "<group>"; };
 		71B81959457F9876EA0080B5 /* Pods-RecipeManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-RecipeManagerTests/Pods-RecipeManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 		130B821E298980D9005676DC /* RecipeManager */ = {
 			isa = PBXGroup;
 			children = (
+				138BEEF9298BEAB700DAF722 /* Persistance */,
 				130B8278298A07A5005676DC /* NavigationControllerRouter.swift */,
 				130B82532989825C005676DC /* Main */,
 				130B825229898223005676DC /* ViewModels */,
@@ -242,6 +247,15 @@
 				130B826C2989B705005676DC /* RecipeTests.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		138BEEF9298BEAB700DAF722 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				138BEEFA298BEACA00DAF722 /* PersistanceManager.swift */,
+				138BEEFC298BEE2B00DAF722 /* UserDefaultsManager.swift */,
+			);
+			path = Persistance;
 			sourceTree = "<group>";
 		};
 		29984E3A31C024ADF75A76DF /* Frameworks */ = {
@@ -449,8 +463,10 @@
 				130B8279298A07A5005676DC /* NavigationControllerRouter.swift in Sources */,
 				130B827D298B01AF005676DC /* RecipeDetailViewModel.swift in Sources */,
 				130B8265298999F6005676DC /* RecipesViewModel.swift in Sources */,
+				138BEEFD298BEE2B00DAF722 /* UserDefaultsManager.swift in Sources */,
 				130B8222298980D9005676DC /* SceneDelegate.swift in Sources */,
 				130B826A2989B6E4005676DC /* Recipe.swift in Sources */,
+				138BEEFB298BEACA00DAF722 /* PersistanceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

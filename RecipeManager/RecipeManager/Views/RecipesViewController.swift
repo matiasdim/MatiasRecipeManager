@@ -16,6 +16,7 @@ class RecipesViewController: UIViewController {
     
     private(set) var viewModel: RecipesViewModel
     private(set) var selection: (Int) -> Void
+    private(set) var favoriteAction: ((Int) -> Void)?
     
     init(viewModel: RecipesViewModel, selection: @escaping (Int) -> ()) {
         self.viewModel = viewModel
@@ -36,8 +37,8 @@ class RecipesViewController: UIViewController {
         configureSearchBar()
         bindViewModel()
         
-        ProgressHUD.show("Fetching Recipes")
-        viewModel.fetchRecipes()
+//        ProgressHUD.show("Fetching Recipes")
+//        viewModel.fetchRecipes()
     }
     
     // MARK: - Private
@@ -63,6 +64,11 @@ class RecipesViewController: UIViewController {
         tableView.register(UINib(nibName: RecipeCell.className,
                                  bundle: nil),
                            forCellReuseIdentifier: RecipeCell.className)
+        
+        favoriteAction = { [weak self] id in
+            self?.viewModel.manageRecipePersistance(byID: id)
+            self?.tableView.reloadData()
+        }
     }
     
     private func configureSearchBar() {
@@ -75,7 +81,10 @@ class RecipesViewController: UIViewController {
     
     private func configure(_ cell: RecipeCell, at index: Int) {
         let title = viewModel.cellTitle(at: index)
-        cell.configure(title: title)
+        let id = viewModel.recipeID(at: index) ?? 0
+        let isFavorite = viewModel.isSavedAsFavorite(byID: id)
+        cell.configure(id: id, title: title, isFavorite: isFavorite)
+        cell.favoriteButtonAction = favoriteAction
     }
 }
 

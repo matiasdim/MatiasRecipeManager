@@ -21,4 +21,6 @@ struct Recipe: Decodable {
     let sourceURL: String?
     let summary: String?
     let instructions: String?
+    
+    var isFavorite = false
 }

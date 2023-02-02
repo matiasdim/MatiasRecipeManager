@@ -10,6 +10,7 @@ import Foundation
 class RecipesViewModel {
     private var recipes: [Recipe]
     private var filteredRecipes: [Recipe]
+    private var persitanceManager: PersistanceManager
     
     private var handlerSourceOfData: [Recipe] {
         isSearching ? filteredRecipes : recipes
@@ -28,10 +29,12 @@ class RecipesViewModel {
     
     init(recipes: [Recipe] = [],
          filteredRecipes: [Recipe] = [],
-         service: RecipeService = RecipeAPIdapter()) {
+         service: RecipeService = RecipeAPIdapter(),
+         persitanceManager: PersistanceManager = UserDefaultsManager()) {
         self.recipes = recipes
         self.filteredRecipes = filteredRecipes
         self.service = service
+        self.persitanceManager = persitanceManager
     }
     
     func numbersOfRows(in section: Int = 0) -> Int {
@@ -52,6 +55,18 @@ class RecipesViewModel {
         })
     }
     
+    func manageRecipePersistance(byID id: Int) {
+        if isSavedAsFavorite(byID: id) {
+            removeFavorite(byID: id)
+        } else {
+            saveFavorite(byID: id)
+        }        
+    }
+    
+    func isSavedAsFavorite(byID id: Int) -> Bool {
+        persitanceManager.isRecipePersisted(id: id) != 0
+    }
+    
     @MainActor
     func fetchRecipes() {
         Task {
@@ -62,6 +77,14 @@ class RecipesViewModel {
                 presentError?(error.localizedDescription)
             }
         }
+    }
+    
+    private func saveFavorite(byID id: Int) {
+        persitanceManager.persistFavoriteRecipe(byID: id)
+    }
+    
+    private  func removeFavorite(byID id: Int) {
+        persitanceManager.removeFavoriteRecipe(byID: id)
     }
     
 }
