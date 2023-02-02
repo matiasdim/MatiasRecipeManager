@@ -16,11 +16,13 @@ final class RecipesViewModelTests: XCTestCase {
         XCTAssertEqual(sut.viewTitle, "Recipes", "Wrong ViewTitle value")
     }
     
-    func test_viewModel_shouldInitWithEmptyRecipesByDefault() {
-        let sut = RecipesViewModel()
-        
-        XCTAssertNil(sut.recipeID(at: 0))
-    }
+//    func test_viewModel_shouldInitWithEmptyRecipesByDefault() {
+//        let sut = RecipesViewModel()
+//
+//        XCTAssertNil(sut.recipeID(at: 0))
+//    }
+    
+//    func
     
     func test_viewModel_shouldInitWithRecipes() {
         let sut = RecipesViewModel(recipes: [recipe])

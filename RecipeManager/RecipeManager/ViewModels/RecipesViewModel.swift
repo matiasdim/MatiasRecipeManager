@@ -9,7 +9,7 @@ import Foundation
 
 class RecipesViewModel {
     private var recipes: [Recipe]
-    private var filteredRecipes: [Recipe] = []
+    private var filteredRecipes: [Recipe]
     
     private var handlerSourceOfData: [Recipe] {
         isSearching ? filteredRecipes : recipes
@@ -25,8 +25,9 @@ class RecipesViewModel {
         return 1
     }
     
-    init(recipes: [Recipe] = []) {
+    init(recipes: [Recipe] = [], filteredRecipes: [Recipe] = []) {
         self.recipes = recipes
+        self.filteredRecipes = filteredRecipes
     }
     
     func numbersOfRows(in section: Int = 0) -> Int {

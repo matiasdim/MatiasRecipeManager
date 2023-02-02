@@ -113,7 +113,9 @@ extension RecipesViewController: UISearchBarDelegate {
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        viewModel.isSearching = true
+        if let text = searchBar.text, !text.isEmpty {
+            viewModel.isSearching = true
+        }
         return true
     }
 }
