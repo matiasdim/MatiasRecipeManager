@@ -37,10 +37,46 @@ final class RecipesViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.searchBar.delegate)
     }
     
+    func test_fetchRecipes_shouldBeCalledWhenLoad() {
+        let dummyVM = RecipesViewModelDummy()
+        let sut = RecipesViewController(viewModel: dummyVM, selection: { _ in })
+        
+        XCTAssertFalse(dummyVM.fetchRecipesCalled)
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(dummyVM.fetchRecipesCalled)
+    }
+    
+    func test_bindViewModel_shouldSetRefreshDataBiding() {
+        let dummyVM = RecipesViewModelDummy()
+        let sut = RecipesViewController(viewModel: dummyVM, selection: { _ in })
+        sut.loadViewIfNeeded()
+        
+        XCTAssertNotNil(dummyVM.refreshData)
+    }
+    
+    func test_bindViewModel_shouldSetpresentErrorBiding() {
+        let dummyVM = RecipesViewModelDummy()
+        let sut = RecipesViewController(viewModel: dummyVM, selection: { _ in })
+        sut.loadViewIfNeeded()
+        
+        XCTAssertNotNil(dummyVM.presentError)
+    }
+    
     func test_setupTableToRegisterCellNib_shouldBeCalledAfterViewLoads() {
         let sut = makeSUT()
         
         XCTAssertNotNil(sut.tableView.dequeueReusableCell(withIdentifier: RecipeCell.className))
+    }
+    
+    func test_setupTable_shouldBeCalledAfterViewLoadsAndSetFavoriteActionProperty() {
+        let dummyVM = RecipesViewModelDummy()
+        let sut = RecipesViewController(viewModel: dummyVM, selection: { _ in })
+        
+        XCTAssertNil(sut.favoriteAction)
+        sut.loadViewIfNeeded()
+        
+        XCTAssertNotNil(sut.favoriteAction)
     }
     
     func test_configureSearchBar_shouldBeCalledAfterViewLoads() {
@@ -233,4 +269,13 @@ class RecipesViewModelSpy : RecipesViewModel {
         super.searchRecipes(searchText: searchText)
         searchRecipesCalled = true
     }
+}
+
+class RecipesViewModelDummy : RecipesViewModel {
+    var fetchRecipesCalled = false
+    @MainActor
+    override func fetchRecipes() {
+        fetchRecipesCalled = true
+    }
+    
 }

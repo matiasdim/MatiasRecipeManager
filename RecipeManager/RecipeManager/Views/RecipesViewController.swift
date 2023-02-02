@@ -37,8 +37,8 @@ class RecipesViewController: UIViewController {
         configureSearchBar()
         bindViewModel()
         
-//        ProgressHUD.show("Fetching Recipes")
-//        viewModel.fetchRecipes()
+        ProgressHUD.show("Fetching Recipes")
+        viewModel.fetchRecipes()
     }
     
     // MARK: - Private

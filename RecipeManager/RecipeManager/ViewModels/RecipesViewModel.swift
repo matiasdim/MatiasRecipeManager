@@ -68,7 +68,7 @@ class RecipesViewModel {
     }
     
     func isSavedAsFavorite(byID id: Int) -> Bool {
-        persitanceManager.isRecipePersisted(id: id) != 0
+        persitanceManager.isRecipePersisted(id: id) != 0        
     }
     
     @MainActor

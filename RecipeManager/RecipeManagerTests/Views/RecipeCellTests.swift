@@ -24,10 +24,12 @@ final class RecipeCellTests: XCTestCase {
     func test_recipeCell_shouldBeCorrectlyConfigured() {
         let sut = makeSut()
         
-        sut?.configure(title: "Test Title", image: .add)
+        sut?.configure(id: 1,
+                       title: "Test Title",
+                       imageURL: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Escudo_del_Deportivo_Independiente_Medell%C3%ADn.png",
+                       isFavorite: false)
         
         XCTAssertEqual(sut?.titleLabel.text, "Test Title", "Title Label configuration error")
-        XCTAssertEqual(sut?.recipeImageView.image, .add, "UIImage View configuration error")
     }
 
     // MARK: - Helpers

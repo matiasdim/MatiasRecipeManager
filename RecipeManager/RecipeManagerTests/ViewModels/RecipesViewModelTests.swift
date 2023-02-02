@@ -127,7 +127,101 @@ final class RecipesViewModelTests: XCTestCase {
         XCTAssertNil(sut.recipeID(at: 0))
     }
     
+    func test_isSavedAsFavorite_shouldCalliIsRecipePersisted_fromPersistanceManager() {
+        let vm = PersistanceManagerStub()
+        let sut = RecipesViewModel(persitanceManager: vm)
+        
+        XCTAssertFalse(vm.isRecipePersistedCalled)
+        let _ = sut.isSavedAsFavorite(byID: 1)
+        
+        XCTAssertTrue(vm.isRecipePersistedCalled)
+    }
+    
+    func test_manageRecipePersistance_shouldCallRemoveFavoriteFromPersistanceManager_whenRecipePersisted() {
+        let vm = ExtraPersistanceManagerStub()
+        let sut = RecipesViewModel(persitanceManager: vm)
+        
+        XCTAssertFalse(vm.isRemoveFavoriteRecipeCalled)
+        vm.isRecipePersisted = 1
+        let _ = sut.manageRecipePersistance(byID: 1)
+        
+        XCTAssertTrue(vm.isRemoveFavoriteRecipeCalled)
+    }
+    
+    func test_manageRecipePersistance_shouldNotCallRemoveFavoriteFromPersistanceManager_whenRecipeNotPersisted() {
+        let vm = ExtraPersistanceManagerStub()
+        let sut = RecipesViewModel(persitanceManager: vm)
+        
+        XCTAssertFalse(vm.isRemoveFavoriteRecipeCalled)
+        vm.isRecipePersisted = 0
+        let _ = sut.manageRecipePersistance(byID: 1)
+        
+        XCTAssertFalse(vm.isRemoveFavoriteRecipeCalled)
+    }
+    
+    func test_manageRecipePersistance_shouldCallSaveFavoriteFromPersistanceManager_whenNoRecipePersisted() {
+        let vm = ExtraPersistanceManagerStub()
+        let sut = RecipesViewModel(persitanceManager: vm)
+        
+        XCTAssertFalse(vm.isPersistFavoriteRecipeCalled)
+        vm.isRecipePersisted = 0
+        let _ = sut.manageRecipePersistance(byID: 1)
+        
+        XCTAssertTrue(vm.isPersistFavoriteRecipeCalled)
+    }
+    
+    func test_manageRecipePersistance_shouldNotCallSaveFavoriteFromPersistanceManager_whenRecipePersisted() {
+        let vm = ExtraPersistanceManagerStub()
+        let sut = RecipesViewModel(persitanceManager: vm)
+        
+        XCTAssertFalse(vm.isPersistFavoriteRecipeCalled)
+        vm.isRecipePersisted = 1
+        let _ = sut.manageRecipePersistance(byID: 1)
+        
+        XCTAssertFalse(vm.isPersistFavoriteRecipeCalled)
+    }
+    
     private let recipe = Recipe(id: 1, title: "Title", image: "", time: 192, servings: 5, sourceURL: "", summary: "This is the summary of the recipe", instructions: "The instructions of the recipe comes here")
     
     private let recipe2 = Recipe(id: 2, title: "Title 2", image: "", time: 192, servings: 5, sourceURL: "", summary: "This is the summary of the recipe", instructions: "The instructions of the recipe comes here")
+}
+
+class PersistanceManagerStub: PersistanceManager {
+    var isPersistFavoriteRecipeCalled = false
+    var isRemoveFavoriteRecipeCalled = false
+    var isRecipePersistedCalled = false
+    
+    var isRecipePersisted = 1
+    
+    func persistFavoriteRecipe(byID id: Int) {
+        isPersistFavoriteRecipeCalled = true
+    }
+    
+    func removeFavoriteRecipe(byID id: Int) {
+        isRemoveFavoriteRecipeCalled = true
+    }
+    
+    func isRecipePersisted(id: Int) -> Int {
+        isRecipePersistedCalled = true
+        return isRecipePersisted
+    }
+}
+
+class ExtraPersistanceManagerStub: PersistanceManager {
+    var isPersistFavoriteRecipeCalled = false
+    var isRemoveFavoriteRecipeCalled = false
+    
+    var isRecipePersisted = 1
+    
+    func persistFavoriteRecipe(byID id: Int) {
+        isPersistFavoriteRecipeCalled = true
+    }
+    
+    func removeFavoriteRecipe(byID id: Int) {
+        isRemoveFavoriteRecipeCalled = true
+    }
+    
+    func isRecipePersisted(id: Int) -> Int {
+        return isRecipePersisted
+    }
 }
