@@ -47,4 +47,20 @@ class RecipeDetailViewModel {
     var instructions: String {
         recipe?.instructions ?? ""
     }
+    
+    func fetchRecipes() {
+//        Task {
+//            do {
+//                let recipeResponse = try await NetworkManager().fetch(path: .detail(<#T##Int#>))
+//                recipes = recipeResponse.results
+//                DispatchQueue.main.async { [weak self] in
+//                    self?.refreshData?()
+//                }
+//            } catch {
+//                DispatchQueue.main.async { [weak self] in
+//                    self?.presentError?(error.localizedDescription)
+//                }
+//            }
+//        }
+    }
 }

@@ -34,6 +34,9 @@ class RecipesViewController: UIViewController {
         setupTable()
         configureSearchBar()
         bindViewModel()
+        
+        // TODO: - Add progres indicator
+        viewModel.fetchRecipes()
     }
     
     // MARK: - Private
@@ -45,10 +48,12 @@ class RecipesViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.refreshData = { [weak self] in
+            // TODO: - Dismiss progres indicator
             self?.tableView.reloadData()
         }
         
         viewModel.presentError = { [weak self] errorDescription in
+            // TODO: - Dismiss progres indicator
             self?.showAlert(title: "Error", message: errorDescription)
         }
     }

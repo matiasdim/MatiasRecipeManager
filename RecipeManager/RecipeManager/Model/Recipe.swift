@@ -8,7 +8,7 @@
 import Foundation
 
 struct RecipesApiResponse: Decodable {
-    let resuls: [Recipe]
+    let results: [Recipe]
 }
 
 struct Recipe: Decodable {

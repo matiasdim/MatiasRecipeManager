@@ -28,8 +28,6 @@ class RecipesViewModel {
     init(recipes: [Recipe] = [], filteredRecipes: [Recipe] = []) {
         self.recipes = recipes
         self.filteredRecipes = filteredRecipes
-        
-        fetch()
     }
     
     func numbersOfRows(in section: Int = 0) -> Int {
@@ -50,11 +48,11 @@ class RecipesViewModel {
         })
     }
     
-    func fetch() {
+    func fetchRecipes() {
         Task {
             do {
-                let recipeResponse = try await NetworkManager().fetchRecipes()
-                recipes = recipeResponse.resuls
+                let recipeResponse = try await NetworkManager().fetch(path: .list)
+                recipes = recipeResponse.results
                 DispatchQueue.main.async { [weak self] in
                     self?.refreshData?()
                 }
