@@ -53,6 +53,10 @@ class RecipeDetailViewModel {
         recipe?.instructions ?? "-"
     }
     
+    var image: String {
+        recipe?.image ?? ""
+    }
+    
     func fetchRecipe() {
         if let recipeID = recipeID {
             Task {

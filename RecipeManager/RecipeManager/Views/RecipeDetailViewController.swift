@@ -34,7 +34,7 @@ class RecipeDetailViewController: UIViewController {
         super.viewDidLoad()
         
         bindViewModel()
-        
+        configureViewInfo()
 //        ProgressHUD.show("Fetching Recipes")
 //        viewModel.fetchRecipe()
     }
