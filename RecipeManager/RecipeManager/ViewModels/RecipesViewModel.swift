@@ -52,17 +52,14 @@ class RecipesViewModel {
         })
     }
     
+    @MainActor
     func fetchRecipes() {
         Task {
             do {
                 recipes = try await service.fetchRecipes()
-                DispatchQueue.main.async { [weak self] in
-                    self?.refreshData?()
-                }
+                refreshData?()
             } catch {
-                DispatchQueue.main.async { [weak self] in
-                    self?.presentError?(error.localizedDescription)
-                }
+                presentError?(error.localizedDescription)
             }
         }
     }
