@@ -97,3 +97,11 @@ entonces ¡Sorprendenos!). **Done. Decided to use UIKit. Even tho I can use Swif
 5. Nice to have: Inyección de dependencias. **Done**
 6. Nice to have: Persistencia de datos (Usando Realm o si conoces una tecnología innovadora
 que quieras implementar, lo puedes hacer... ¡Descrestanos!).**Done using user defaults.**
+
+
+
+# App screenshots
+![Simulator Screen Shot - iPhone 14 Pro - 2023-02-02 at 16 48 04](https://user-images.githubusercontent.com/1373345/216717834-c0314ebb-e714-4d68-8c30-cb3db0350175.png)
+
+![Simulator Screen Shot - iPhone 14 Pro - 2023-02-02 at 16 47 57](https://user-images.githubusercontent.com/1373345/216717855-3c309553-d9f4-4c79-ba64-9493c3367440.png)
+
