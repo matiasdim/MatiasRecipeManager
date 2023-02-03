@@ -38,6 +38,7 @@
 		138BEEFB298BEACA00DAF722 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138BEEFA298BEACA00DAF722 /* PersistanceManager.swift */; };
 		138BEEFD298BEE2B00DAF722 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138BEEFC298BEE2B00DAF722 /* UserDefaultsManager.swift */; };
 		13A22130298D710D00F81CFE /* ViewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A2212F298D710D00F81CFE /* ViewsFactory.swift */; };
+		13A22133298D8DA200F81CFE /* RecipeAPIAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A22132298D8DA200F81CFE /* RecipeAPIAdapter.swift */; };
 		17C16716E9BE3B1BB19AA5CC /* Pods_RecipeManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203E75697109A09740894B77 /* Pods_RecipeManager.framework */; };
 		8F2E2AF2A214DB16244CC346 /* Pods_RecipeManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16CDF7A14935606B17A9FDC /* Pods_RecipeManagerTests.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,7 @@
 		138BEEFA298BEACA00DAF722 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		138BEEFC298BEE2B00DAF722 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		13A2212F298D710D00F81CFE /* ViewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsFactory.swift; sourceTree = "<group>"; };
+		13A22132298D8DA200F81CFE /* RecipeAPIAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPIAdapter.swift; sourceTree = "<group>"; };
 		203E75697109A09740894B77 /* Pods_RecipeManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecipeManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED75A4A40777969033C58A2 /* Pods-RecipeManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeManager.release.xcconfig"; path = "Target Support Files/Pods-RecipeManager/Pods-RecipeManager.release.xcconfig"; sourceTree = "<group>"; };
 		71B81959457F9876EA0080B5 /* Pods-RecipeManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-RecipeManagerTests/Pods-RecipeManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		130B821E298980D9005676DC /* RecipeManager */ = {
 			isa = PBXGroup;
 			children = (
+				13A22131298D8D8500F81CFE /* API */,
 				13A2212D298D6FAD00F81CFE /* Composition */,
 				135C3EA6298C3E0000999A18 /* Extensions */,
 				130B82532989825C005676DC /* Main */,
@@ -180,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				138BEEF5298B661300DAF722 /* NetworkManager.swift */,
-				138BEEF7298B830400DAF722 /* RecipeAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -286,6 +288,15 @@
 				130B827A298A0810005676DC /* NavigationControllerRouterTests.swift */,
 			);
 			path = Composition;
+			sourceTree = "<group>";
+		};
+		13A22131298D8D8500F81CFE /* API */ = {
+			isa = PBXGroup;
+			children = (
+				138BEEF7298B830400DAF722 /* RecipeAPI.swift */,
+				13A22132298D8DA200F81CFE /* RecipeAPIAdapter.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		29984E3A31C024ADF75A76DF /* Frameworks */ = {
@@ -496,6 +507,7 @@
 				130B8265298999F6005676DC /* RecipesViewModel.swift in Sources */,
 				138BEEFD298BEE2B00DAF722 /* UserDefaultsManager.swift in Sources */,
 				135C3EA8298C3E1800999A18 /* UIViewController+Extensions.swift in Sources */,
+				13A22133298D8DA200F81CFE /* RecipeAPIAdapter.swift in Sources */,
 				130B8222298980D9005676DC /* SceneDelegate.swift in Sources */,
 				130B826A2989B6E4005676DC /* Recipe.swift in Sources */,
 				138BEEFB298BEACA00DAF722 /* PersistanceManager.swift in Sources */,

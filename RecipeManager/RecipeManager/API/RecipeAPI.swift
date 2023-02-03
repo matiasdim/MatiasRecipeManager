@@ -7,6 +7,11 @@
 
 import Foundation
 
+protocol RecipeService {
+    func fetchRecipes() async throws -> [Recipe]
+    func fetchRecipeDetail(forID id: Int) async throws -> Recipe
+}
+
 struct RecipeAPI {
     var networkManager = NetworkManager()
     
@@ -29,27 +34,3 @@ struct RecipeAPI {
     }
 }
 
-struct RecipeAPIdapter: RecipeService {
-    var api: RecipeAPI = RecipeAPI()
-    
-    func fetchRecipes() async throws -> [Recipe] {
-        do {
-            return try await api.fetchRecipes()
-        } catch {
-            throw error
-        }
-    }
-    
-    func fetchRecipeDetail(forID id: Int) async throws -> Recipe {
-        do {
-            return try await api.fetchRecipeDetail(forID: id)
-        } catch {
-            throw error
-        }
-    }
-}
-
-protocol RecipeService {
-    func fetchRecipes() async throws -> [Recipe]
-    func fetchRecipeDetail(forID id: Int) async throws -> Recipe
-}
