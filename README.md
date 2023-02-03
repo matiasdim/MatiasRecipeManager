@@ -48,6 +48,9 @@ As mentioned, the application has a modular architecture featuring the following
 
 Following the app's layer diagram:
 
+<img width="1266" alt="Screenshot 2023-02-03 at 4 43 34 PM" src="https://user-images.githubusercontent.com/1373345/216716439-4bd7bcf3-e42e-40a0-bedf-26c8cea5784e.png">
+
+
 The diagram illustrates the layers and components mentioned, depicting the relationships between them and showing the loosely coupled modules with strict dependencies. This structure ensures that higher-order modules do not depend on lower-order ones and enables easy addition of new modules without significant code changes.
 
 # Technical information
