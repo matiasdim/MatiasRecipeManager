@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-protocol ViewsFactory {
-    func makeRecipesViewController(withSelectionAction action: @escaping (Int) -> Void) -> UIViewController
-    func makeRecipeDetailViewController(forID id: Int) -> UIViewController
-}
-
 struct ViewControllerFactory: ViewsFactory {
 
     func makeRecipesViewController(withSelectionAction action: @escaping (Int) -> Void) -> UIViewController {
