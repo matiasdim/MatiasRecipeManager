@@ -13,10 +13,12 @@ class RecipeDetailViewModel {
     
     var dataReady: (() -> Void)?
     var presentError: ((String) -> Void)?
+    var service: RecipeService
         
-    init(recipe: Recipe? = nil, recipeID: Int? = nil) {
+    init(recipe: Recipe? = nil, recipeID: Int? = nil, service: RecipeService = RecipeAPIdapter()) {
         self.recipe = recipe
         self.recipeID = recipeID
+        self.service = service
     }
     
     var viewTitle: String {
@@ -61,7 +63,7 @@ class RecipeDetailViewModel {
         if let recipeID = recipeID {
             Task {
                 do {
-                    let recipe = try await NetworkManager().fetch(path: .detail(recipeID), decodableType: Recipe.self)
+                    let recipe = try await service.fetchRecipeDetail(forID: recipeID)
                     self.recipe = recipe
                     DispatchQueue.main.async { [weak self] in
                         self?.dataReady?()
