@@ -75,30 +75,6 @@ IThe app has some limitations and room for improvement. The priority was to deve
 - Other improvements could be discussed with you.
 
 
-# From what was asked for this test
-Partes de la Aplicación
-1. Aplicación desarrollada de Swift. **Done**
-3. Pantalla de lista de recetas. **Done**
-4. Pantalla de búsqueda de recetas por palabra clave. **Done**
-5. Detalle de una receta escogida de la lista de recetas. **Done**
-6. Nice to have: Posibilidad de guardar en mis favoritos una receta de la lista. **Done**
-7. Nice to have: Crear un Splash que se presente por 3 segundos antes de mostrar el resto de
-pantallas. **Done**
-
-Criterios de evaluación
-1. Manejo de posibles errores y/o interfaces de usuario para avisar que algún error o
-comportamiento no deseado sucedió. **Done**
-2. Consumo de servicios REST usando Alamofire (Si nos quieres sorprender con una
-tecnología mucho más innovadora, ¡La esperamos!). **Done. I would like to use URLSession but I decided to use this one mentioned here**
-3. Manejo de SwiftUI para navegación, persistencia de la información y buenas prácticas de UI
-(Si te sientes más poderoso con Storyboard o mucho mejor con vistas programatizadas,
-entonces ¡Sorprendenos!). **Done. Decided to use UIKit. Even tho I can use SwiftUI, I am more experienced with UIKit and having limited time it was the best decision. Views are done using Xibs**
-4. Nice to have: Unit testing. **Done (TDD)**
-5. Nice to have: Inyección de dependencias. **Done**
-6. Nice to have: Persistencia de datos (Usando Realm o si conoces una tecnología innovadora
-que quieras implementar, lo puedes hacer... ¡Descrestanos!).**Done using user defaults.**
-
-
 
 # App screenshots
 ![Simulator Screen Shot - iPhone 14 Pro - 2023-02-02 at 16 48 04](https://user-images.githubusercontent.com/1373345/216717834-c0314ebb-e714-4d68-8c30-cb3db0350175.png)
